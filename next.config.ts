@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  env: {
+    MAIN_HOST: '',
+    SERVER_HOST: '',
+  },
 };
 
 export default nextConfig;
