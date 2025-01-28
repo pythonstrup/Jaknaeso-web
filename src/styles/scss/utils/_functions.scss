@@ -1,0 +1,3 @@
+@mixin dash-line($width, $color) {
+  border: $width dashed $color;
+}
