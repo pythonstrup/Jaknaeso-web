@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -22,6 +24,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Pretendard Variable';
 }
 
 * {
@@ -39,4 +42,48 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.title1 {
+  @include title1;
+}
+
+.title2 {
+  @include title2;
+}
+
+.title3 {
+  @include title3;
+}
+
+.title4 {
+  @include title4;
+}
+
+.subTitle1 {
+  @include subTitle1;
+}
+
+.subTitle2 {
+  @include subTitle2;
+}
+
+.subTitle3 {
+  @include subTitle3;
+}
+
+.subTitle4 {
+  @include subTitle4;
+}
+
+.body1 {
+  @include body1;
+}
+
+.body2 {
+  @include body2;
+}
+
+.caption {
+  @include caption;
 }
