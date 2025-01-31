@@ -2,6 +2,7 @@
 
 import { AppleLoginButton, KakaoLoginButton } from '@/assets/buttons';
 import { redirectUri } from '@/libs';
+import { isIOS, isMacOs } from 'react-device-detect';
 
 import styles from './login.module.scss';
 
@@ -10,6 +11,11 @@ export default function LoginPage() {
     window.Kakao.Auth.authorize({
       redirectUri,
     });
+  };
+  const handleAppleLogin = async () => {
+    const data = await window.AppleID.auth.signIn();
+    const idToken = data.authorization.id_token;
+    const name = (data.user?.name?.lastName ?? '') + (data.user?.name?.firstName ?? '');
   };
   return (
     <div className={styles.container}>
@@ -32,7 +38,7 @@ export default function LoginPage() {
       </div>
       <div className={styles.footer}>
         <KakaoLoginButton onClick={handleKakaoLogin} />
-        <AppleLoginButton />
+        {(isIOS || isMacOs) && <AppleLoginButton onClick={handleAppleLogin} />}
       </div>
     </div>
   );
