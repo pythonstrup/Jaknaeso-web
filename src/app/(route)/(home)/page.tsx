@@ -9,6 +9,7 @@ export default async function Home() {
     <PrefetchHydration queryKey={['test']} queryFn={testApis.getTest}>
       <Header />
       <Test />
+      <h3 className="title2">타이포 적용</h3>
     </PrefetchHydration>
   );
 }

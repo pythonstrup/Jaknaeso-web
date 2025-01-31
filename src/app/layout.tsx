@@ -5,7 +5,7 @@ import { KakaoScript } from '@/components/kakaoScript';
 
 import ReactQueryProviders from '../providers/ReactQueryProvider';
 
-import './globals.css';
+import './globals.scss';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

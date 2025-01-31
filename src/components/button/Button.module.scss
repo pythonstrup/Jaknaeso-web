@@ -7,13 +7,13 @@
   line-height: 1;
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   &--primary {
-    background-color: $purple-200;
-    color: $gray-100;
+    background-color: $primary-blue-200;
+    color: $neutral-100;
   }
   &--secondary {
-    box-shadow: $gray-800 0px 0px 0px 1px inset;
+    box-shadow: $neutral-800 0px 0px 0px 1px inset;
     background-color: transparent;
-    color: $gray-800;
+    color: $neutral-800;
   }
   &--small {
     padding: 10px 16px;
@@ -26,6 +26,6 @@
   &--large {
     padding: 12px 24px;
     font-size: 16px;
-    @include dash-line(2px, $gray-800);
+    @include dash-line(2px, $neutral-800);
   }
 }
