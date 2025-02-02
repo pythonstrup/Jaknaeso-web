@@ -3,8 +3,7 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-
-import { ROUTES } from '@/constants';
+import axios from 'axios';
 
 export default function LoginKakaoPage() {
   const searchParams = useSearchParams();
@@ -13,9 +12,19 @@ export default function LoginKakaoPage() {
   useEffect(() => {
     if (searchParams.get('code')) {
       console.log(searchParams.get('code'));
-      router.push(ROUTES.home);
+
+      axios
+        .post('https://dev.jaknaeso.kro.kr/api/v1/auth/kakao-login', { code: searchParams.get('code') })
+        .then((res) => {
+          console.log(res);
+        });
+      // authApis.post({ code: searchParams.get('code') as string }).then((res) => {
+      //   console.log('응답', res);
+      //   //setTokens(res.data.accessToken, res.data.refreshToken);
+      // });
+      //router.push(ROUTES.home);
     }
-  }, [searchParams]);
+  }, []);
 
   return <>kakao page loading...</>;
 }
