@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  padding-left: 1.25rem;
+  padding-bottom: 1rem;
+  padding-top: 1.69rem;
+  @include displayFlex(row, flex-start, center, 1rem);
+  list-style: none;
+}
+
+.header {
+  @include title3;
+  color: $neutral-500;
+  &.active {
+    color: $black;
+  }
+}
