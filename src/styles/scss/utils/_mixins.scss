@@ -21,6 +21,16 @@
   flex-direction: column;
 }
 
+@mixin flex-column-with-gap($gap: 0) {
+  @include flex-column;
+  gap: $gap;
+}
+
+@mixin flex-with-gap($gap: 0) {
+  display: flex;
+  gap: $gap;
+}
+
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -40,4 +50,10 @@
 @mixin flex-center-horiz {
   display: flex;
   justify-content: center;
+}
+
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
