@@ -6,9 +6,9 @@ import { CookieKey } from './cookieKey';
  * 쿠키에서 아이템을 가져옴
  */
 const getItemOrNull = async <T>(key: CookieKey): Promise<T | null> => {
-  const cookieStore = await cookies();
+  const cookieStore = cookies();
   try {
-    const data = cookieStore.get(key)?.value;
+    const data = (await cookieStore).get(key)?.value;
     return data ? (data as T) : null;
   } catch (error) {
     return null;
@@ -45,16 +45,15 @@ export const setAccessToken = (accessToken: string) => {
  * refresh token 값 가져옴
  */
 export const getRefreshToken = async () => {
-  return getItemOrNull<string>(CookieKey.refreshToken);
+  return await getItemOrNull<string>(CookieKey.refreshToken);
 };
 
 /**
  * access token 값 가져옴
  */
-export const getAccessToken = () => {
-  return getItemOrNull<string>(CookieKey.accessToken);
+export const getAccessToken = async () => {
+  return await getItemOrNull<string>(CookieKey.accessToken);
 };
-
 /**
  * access token, refresh token 값 넣어줌
  */
