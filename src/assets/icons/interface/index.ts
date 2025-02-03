@@ -1,3 +1,3 @@
+import CheckIcon from './check.svg';
 import CloseIcon from './close.svg';
-
-export { CloseIcon };
+export { CheckIcon, CloseIcon };
