@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/Button';
 import { redirectUri } from '@/libs';
 
 export default function LoginPage() {
@@ -9,9 +9,5 @@ export default function LoginPage() {
       redirectUri,
     });
   };
-  return (
-    <>
-      <Button label="kakao login" onClick={handleKakaoLogin} />
-    </>
-  );
+  return <Button onClick={handleKakaoLogin}>{'kakao login'}</Button>;
 }
