@@ -1,0 +1,23 @@
+.container {
+  height: 4.25rem;
+  background-color: $white;
+  width: 100%;
+  justify-content: center;
+  @include grid(3);
+  .section {
+    @include displayFlex(row, center, center);
+  }
+}
+
+.layout {
+  @include flex-column;
+  min-height: 100vh;
+
+  .content {
+    flex: 1;
+    @include flex-column;
+  }
+  .footer {
+    height: 4.25rem; // 102px
+  }
+}

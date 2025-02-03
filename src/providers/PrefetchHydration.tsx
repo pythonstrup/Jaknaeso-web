@@ -1,10 +1,10 @@
 import { cache, type PropsWithChildren } from 'react';
 import {
-  type QueryKey,
-  type QueryFunction,
-  QueryClient,
   dehydrate,
   HydrationBoundary as HydrateOnClient,
+  QueryClient,
+  type QueryFunction,
+  type QueryKey,
 } from '@tanstack/react-query';
 
 type Props = {

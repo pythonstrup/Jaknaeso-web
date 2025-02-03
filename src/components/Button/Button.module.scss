@@ -1,0 +1,32 @@
+.button {
+  width: 100%;
+  padding: 1.125rem;
+  font-size: 1.125rem;
+  border-radius: 0.75rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.color-primary {
+  background-color: $primary-blue-500;
+  color: $white;
+}
+
+.color-primary:active {
+  background-color: $primary-blue-600;
+}
+
+.color-primary:disabled {
+  background-color: $neutral-400;
+  color: $neutral-050;
+}
+
+.color-neutral {
+  background-color: $neutral-200;
+  color: $neutral-600;
+}
+
+.color-neutral:disabled {
+  color: $neutral-400;
+}

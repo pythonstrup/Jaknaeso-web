@@ -1,6 +1,59 @@
-@mixin displayFlex($flex-direction: row, $justify-content: center, $align-items: center) {
+@mixin displayFlex($flex-direction: row, $justify-content: center, $align-items: center, $gap: 0) {
   display: flex;
   flex-direction: $flex-direction;
   justify-content: $justify-content;
   align-items: $align-items;
+  gap: $gap;
+}
+@mixin putCenter {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin grid($columns, $gap: 0) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-with-gap($gap: 0) {
+  @include flex-column;
+  gap: $gap;
+}
+
+@mixin flex-with-gap($gap: 0) {
+  display: flex;
+  gap: $gap;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

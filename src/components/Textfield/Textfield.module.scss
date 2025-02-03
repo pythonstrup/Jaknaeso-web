@@ -1,0 +1,20 @@
+.textarea {
+  min-height: 12.5rem;
+  width: 100%;
+  padding: 1.25rem 1rem;
+  background-color: $neutral-100;
+  border: 1px solid $neutral-300;
+  border-radius: 1.25rem;
+  font-family: 'Pretendard Variable';
+  font-size: 0.875rem;
+}
+
+.textarea:focus {
+  outline: none;
+  border: 1px solid $neutral-500;
+  color: $neutral-900;
+}
+
+.textarea::placeholder {
+  color: $neutral-600;
+}

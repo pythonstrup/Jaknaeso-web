@@ -21,7 +21,6 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Pretendard Variable';
@@ -41,6 +40,20 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+.container {
+  background-color: $neutral-200;
+  min-height: 100vh;
+  @include displayFlex(row, center, center);
+  .layout {
+    background-color: $white;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 32rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
   }
 }
 
