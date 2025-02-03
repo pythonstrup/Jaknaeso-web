@@ -1,4 +1,4 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse, type AxiosError } from 'axios';
+import axios, { type AxiosError, type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from 'axios';
 
 interface AxiosInstanceParams {
   baseUrl: string;
