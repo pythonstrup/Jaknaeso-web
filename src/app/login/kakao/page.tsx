@@ -2,29 +2,19 @@
 
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
-import axios from 'axios';
+
+import { redirectUri } from '@/libs';
+import { useAuthMutation } from '@/query-hooks/useAuth';
 
 export default function LoginKakaoPage() {
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const { postAuth } = useAuthMutation();
 
   useEffect(() => {
     if (searchParams.get('code')) {
-      console.log(searchParams.get('code'));
-
-      axios
-        .post('https://dev.jaknaeso.kro.kr/api/v1/auth/kakao-login', { code: searchParams.get('code') })
-        .then((res) => {
-          console.log(res);
-        });
-      // authApis.post({ code: searchParams.get('code') as string }).then((res) => {
-      //   console.log('응답', res);
-      //   //setTokens(res.data.accessToken, res.data.refreshToken);
-      // });
-      //router.push(ROUTES.home);
+      postAuth.mutateAsync({ code: searchParams.get('code') as string, redirectUri });
     }
-  }, []);
+  }, [searchParams]);
 
   return <>kakao page loading...</>;
 }
