@@ -19,6 +19,12 @@
   width: 100%;
 }
 
+.cardSubTitle4 {
+  @include subTitle4;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .cardContents {
   @include flex-column-with-gap(1rem);
 }
@@ -27,6 +33,11 @@
 .answer {
   @include subTitle4;
   @include flex-with-gap(0.5rem);
+}
+
+.answer__content {
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 .separator {

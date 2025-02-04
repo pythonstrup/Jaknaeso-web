@@ -1,0 +1,59 @@
+.settingsContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0;
+}
+
+.settingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #f0f0f0;
+  }
+}
+
+.settingLink {
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.arrow {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SwitchRoot {
+  width: 3.3125rem;
+  height: 1.875rem;
+  background-color: #ccc;
+  border-radius: 9999px;
+  position: relative;
+  border: none;
+
+  &[data-state="checked"] {
+    background-color: #007aff;
+  }
+}
+
+.SwitchThumb {
+  display: block;
+  height: 1.25rem;
+  width: 1.25rem;
+  background-color: white;
+  border-radius: 9999px;
+  transition: transform 100ms;
+  transform: translateX(0.375rem);
+  will-change: transform;
+  &[data-state="checked"] {
+    transform: translateX(1.625rem);
+  }
+}

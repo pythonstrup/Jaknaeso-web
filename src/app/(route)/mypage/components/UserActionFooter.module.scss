@@ -1,0 +1,21 @@
+.actionsContainer {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem;
+  font-size: 1rem;
+  color: #757575;
+  text-align: center;
+  margin-bottom: 2rem;
+
+  .action {
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
