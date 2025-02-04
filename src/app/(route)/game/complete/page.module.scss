@@ -1,0 +1,22 @@
+.container {
+  @include flex-column-with-gap(2.5rem);
+  height: 100vh;
+  padding: 7.5rem 1.25rem 1.75rem 1.25rem;
+  background-color: $neutral-050;
+}
+
+.header {
+  text-align: center;
+}
+
+.subTitle {
+  @include subTitle2;
+  color: $neutral-700;
+  margin-top: 1.25rem;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
