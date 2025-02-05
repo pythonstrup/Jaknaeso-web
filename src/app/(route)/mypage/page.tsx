@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import ProfileCard from './components/ProfileCard';
 import UserActionFooter from './components/UserActionFooter';
 import UserSettings from './components/UserSettings';

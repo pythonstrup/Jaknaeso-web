@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import styles from './UserSettings.module.scss';
+
 import { ArrowRightIcon as ArrowRightIcon } from '@/assets/icons';
 import { Switch } from '@/components/Switch';
+
+import styles from './UserSettings.module.scss';
 
 const Settings: React.FC = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);

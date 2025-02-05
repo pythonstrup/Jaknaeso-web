@@ -1,0 +1,43 @@
+.container {
+  padding-top: 3.125rem;
+  flex: 1;
+  background-color: $neutral-050;
+}
+
+.content {
+  padding-left: 1.25rem;
+  @include displayFlex(column, flex-start, flex-start, 0.625rem);
+  h1 {
+  }
+}
+
+.wrapper {
+  width: 100%;
+  position: fixed;
+  left: 50%;
+  bottom: 303px;
+  transform: translate(-50%, -50%);
+  @include flex-center;
+}
+.capsule {
+  @include displayFlex(row, center, center, 0.625rem);
+
+  label:nth-child(1) {
+    @include subTitle1;
+    color: $neutral-600;
+  }
+
+  label:nth-child(3) {
+    @include subTitle1;
+    color: $black;
+  }
+}
+.grid {
+  @include grid(5);
+  width: 100%;
+  justify-items: center;
+  .lock {
+    @include flex-center;
+    margin-bottom: 1.75rem;
+  }
+}
