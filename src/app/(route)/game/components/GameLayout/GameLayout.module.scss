@@ -1,0 +1,41 @@
+.container {
+  @include flex-column;
+  height: 100vh;
+  padding: 0 1.125rem 1.75rem 1.125rem;
+  background-color: $white;
+  text-align: center;
+}
+
+.topBar {
+  position: relative;
+  padding: 0.6875rem 0;
+  width: 100%;
+  height: 3.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+  }
+}
+
+.header {
+  @include flex-column-with-gap(0.75rem);
+  align-items: center;
+  margin-top: 3.75rem;
+}
+
+.title {
+  @include title3;
+  white-space: pre-line;
+}
+
+.content {
+  flex: 1;
+}
+
+.footer {
+  margin: 0 0.25rem;
+}

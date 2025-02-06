@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
 import { LineIcon } from '@/assets/icons';
 import { Button } from '@/components/Button';
@@ -12,6 +12,7 @@ import { LockBtn } from '@/components/LockBtn';
 import { ROUTES } from '@/constants';
 
 import styles from './page.module.scss';
+
 const Drawer = dynamic(() => import('./components/Drawer/Drawer'), { ssr: false });
 const DrawerContent = dynamic(() => import('./components/Drawer/Content'), { ssr: false });
 const DrawerFooter = dynamic(() => import('./components/Drawer/Footer'), { ssr: false });
@@ -19,6 +20,16 @@ const DrawerFooter = dynamic(() => import('./components/Drawer/Footer'), { ssr: 
 export default function Home() {
   const routes = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const surveyType = localStorage.getItem('surveyType');
+      if (!surveyType) {
+        redirect(ROUTES.selectGame);
+      }
+    }
+  }, []);
+
   return (
     <div className={styles.layout}>
       <div className={styles.container}>
