@@ -68,19 +68,19 @@ export default function Card({
     <div className={`${styles.container} ${className}`}>
       <Accordion.Root type="single" collapsible {...(isOpen ? { defaultValue: 'item-1' } : {})}>
         <Accordion.Item value="item-1">
-          <CardComponent className={styles.wrapper}>
-            <Accordion.Header className={styles.header}>
-              <div className={styles.date}>
-                <h4 className={styles.cardSubTitle4}>{date}</h4>
-                <Accordion.Trigger className={styles.trigger}>
+          <Accordion.Trigger className={styles.trigger}>
+            <CardComponent className={styles.wrapper}>
+              <Accordion.Header className={styles.header}>
+                <div className={styles.date}>
+                  <h4 className={styles.cardSubTitle4}>{date}</h4>
                   <ArrowDownIcon width="1.5rem" height="1.5rem" className={styles.icon} />
-                </Accordion.Trigger>
-              </div>
-            </Accordion.Header>
-            <Accordion.Content className={styles.contents}>
-              <CardContents question={question} answer={answer} retrospective={retrospective} />
-            </Accordion.Content>
-          </CardComponent>
+                </div>
+              </Accordion.Header>
+              <Accordion.Content className={styles.contents}>
+                <CardContents question={question} answer={answer} retrospective={retrospective} />
+              </Accordion.Content>
+            </CardComponent>
+          </Accordion.Trigger>
         </Accordion.Item>
       </Accordion.Root>
     </div>
