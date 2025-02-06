@@ -16,6 +16,8 @@
   .content {
     @include flex-column;
     margin-bottom: 4.25rem;
+    flex: 1;
+    min-height: calc(100vh - 4.25rem);
   }
   .footer {
     height: 4.25rem;

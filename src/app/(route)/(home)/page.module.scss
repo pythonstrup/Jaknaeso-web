@@ -1,7 +1,12 @@
+.layout {
+  width: 100%;
+  flex: 1;
+  height: 100vh;
+  background-color: $neutral-050;
+}
+
 .container {
   padding-top: 3.125rem;
-  flex: 1;
-  background-color: $neutral-050;
 }
 
 .content {
