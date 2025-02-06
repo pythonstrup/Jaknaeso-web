@@ -1,3 +1,4 @@
 import CheckIcon from './check.svg';
 import CloseIcon from './close.svg';
-export { CheckIcon, CloseIcon };
+import LineIcon from './line.svg';
+export { CheckIcon, CloseIcon, LineIcon };

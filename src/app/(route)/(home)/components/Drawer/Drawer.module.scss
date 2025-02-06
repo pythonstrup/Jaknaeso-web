@@ -1,0 +1,33 @@
+.container {
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  width: 100%;
+  background-color: $white;
+  position: fixed;
+  bottom: 4.25rem;
+  max-width: 32rem;
+  background-color: $white;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 8px;
+}
+
+.handle {
+  width: 100%;
+  @include flex-center;
+}
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .info {
+    margin-top: 12px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .footer {
+    width: 100%;
+    margin-bottom: 28px;
+  }
+}

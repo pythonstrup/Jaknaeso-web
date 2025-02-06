@@ -32,7 +32,7 @@ export default function RootLayout({
       <head>
         <KakaoScript />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <ReactQueryProviders>
           <div className="container">
             <main className="layout">{children}</main>

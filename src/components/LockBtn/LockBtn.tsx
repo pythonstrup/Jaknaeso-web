@@ -28,11 +28,11 @@ const OPTIONS = {
   },
 };
 
-export default function LockBtn({ label, variant = 'default', disabled, ...props }: LockBtnProps) {
+export default function LockBtn({ label, variant = 'default', className, disabled, ...props }: LockBtnProps) {
   const type = disabled ? 'disabled' : variant;
   const item = OPTIONS[type];
   return (
-    <div className={cn(styles[`container-${type}`], styles.container)}>
+    <div className={cn(styles[`container-${type}`], styles.container, className)}>
       <button className={cn(styles[`color-${type}`], styles.button)} {...props}>
         <item.icon width={28} height={28} color={item.iconColor} />
       </button>

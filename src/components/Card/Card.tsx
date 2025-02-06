@@ -17,18 +17,19 @@ interface CardProps extends CardContentsProps {
   date: string;
   hiddenCollapse?: boolean;
   isOpen?: boolean;
+  className?: string;
 }
 
 const CardContents = ({ question, answer, retrospective }: CardContentsProps) => (
   <div className={styles.cardContents}>
     <div className={styles.question}>
-      <h3>Q.</h3>
-      <h3>{question}</h3>
+      <h5 className={styles.answer__content}>Q.</h5>
+      <h5 className={styles.answer__content}>{question}</h5>
     </div>
     <Separator.Root className={styles.separator} />
     <div className={styles.answer}>
-      <h3>A.</h3>
-      <h3>{answer}</h3>
+      <h5 className={styles.answer__content}>A.</h5>
+      <h5 className={styles.answer__content}>{answer}</h5>
     </div>
     {retrospective && (
       <div className={styles.retrospective}>
@@ -57,19 +58,20 @@ export default function Card({
   hiddenCollapse = false,
   isOpen = false,
   retrospective,
+  className,
 }: CardProps) {
   if (hiddenCollapse) {
     return <BasicCard date={date} question={question} answer={answer} />;
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className}`}>
       <Accordion.Root type="single" collapsible {...(isOpen ? { defaultValue: 'item-1' } : {})}>
         <Accordion.Item value="item-1">
           <CardComponent className={styles.wrapper}>
             <Accordion.Header className={styles.header}>
               <div className={styles.date}>
-                <h3 className="subtitle3">{date}</h3>
+                <h4 className={styles.cardSubTitle4}>{date}</h4>
                 <Accordion.Trigger className={styles.trigger}>
                   <ArrowDownIcon width="1.5rem" height="1.5rem" className={styles.icon} />
                 </Accordion.Trigger>

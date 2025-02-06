@@ -10,7 +10,7 @@ import styles from './Footer.module.scss';
 
 const TABS = [
   { href: ROUTES.home, icon: HomeIcon, focus: ROUTES.home },
-  { href: ROUTES.reportAnalysis, icon: FileDocumentIcon, focus: ROUTES.report },
+  { href: ROUTES.reportQuestions, icon: FileDocumentIcon, focus: ROUTES.report },
   { href: ROUTES.mypage, icon: ProfileIcon, focus: ROUTES.mypage },
 ];
 

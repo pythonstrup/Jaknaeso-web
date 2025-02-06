@@ -11,13 +11,17 @@
 
 .layout {
   @include flex-column;
-  min-height: 100vh;
-
+  z-index: 2;
+  height: 100%;
   .content {
-    flex: 1;
     @include flex-column;
+    margin-bottom: 4.25rem;
   }
   .footer {
-    height: 4.25rem; // 102px
+    height: 4.25rem;
+    width: 100%;
+    max-width: 32rem;
+    position: fixed;
+    bottom: 0;
   }
 }
