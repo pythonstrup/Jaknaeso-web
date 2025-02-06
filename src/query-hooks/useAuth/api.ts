@@ -10,7 +10,15 @@ const post = async (body: AuthParams['post']) => {
 };
 
 const reissue = async (token: string) => {
-  const { data } = await withoutTokenApi.post<ResponseDTO<AuthResponse>>(`/api/v1/auth/reissue`, token);
+  const { data } = await withoutTokenApi.post<ResponseDTO<AuthResponse>>(
+    `/api/v1/auth/reissue`,
+    {},
+    {
+      headers: {
+        'Refresh-Token': `Bearer ${token}`,
+      },
+    },
+  );
   setTokens(data.data.accessToken, data.data.refreshToken);
   console.log('토큰 재발급 실행');
 

@@ -1,5 +1,5 @@
 import { BaseApi } from '@/utils/modules/api';
 
 export const withoutTokenApi = new BaseApi({
-  baseUrl: process.env.MAIN_HOST || '',
+  baseUrl: process.env.SERVER_HOST || '',
 }).axiosInstance;

@@ -15,10 +15,10 @@ interface AxiosInstanceParams {
 //   onFulfilled: (response: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>;
 //   onRejected: (error: AxiosError) => Promise<AxiosError>;
 // }
+let lock = false;
 
 export class BaseApi {
   private _axiosInstance: AxiosInstance;
-  private lock = false;
   constructor({ baseUrl, options }: AxiosInstanceParams) {
     this._axiosInstance = axios.create({ baseURL: baseUrl, ...options });
     this.registerResponseInterceptor();
@@ -133,9 +133,8 @@ export class BaseApi {
    */
   private async handleResponseRejected(error: AxiosError<ResponseErrorAPI>): Promise<AxiosResponse> {
     const originalConfig = error.config;
-    console.log('reject');
-    if (originalConfig && error.response?.data.error.code === 'E4011' && !this.lock) {
-      this.lock = true;
+    if (originalConfig && error.response?.data.error.code === 'E4011' && !lock) {
+      lock = true;
       try {
         const refreshToken = await getRefreshToken();
         const accessToken = await authApis.reissue(refreshToken as string);
@@ -146,10 +145,10 @@ export class BaseApi {
               headers: { Authorization: `Bearer ${accessToken}` },
             })
             .finally(() => {
-              this.lock = false;
+              lock = false;
             });
         }
-        this.lock = false;
+        lock = false;
         window.location.href = ROUTES.login;
       } catch (err) {
         window.location.href = ROUTES.login;
