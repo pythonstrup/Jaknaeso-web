@@ -6,7 +6,6 @@
   position: fixed;
   bottom: 4.25rem;
   max-width: 32rem;
-  background-color: $white;
 
   padding-left: 20px;
   padding-right: 20px;
@@ -16,6 +15,9 @@
 .handle {
   width: 100%;
   @include flex-center;
+  svg {
+    cursor: pointer;
+  }
 }
 .layout {
   display: flex;
