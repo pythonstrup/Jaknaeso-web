@@ -14,8 +14,6 @@ type User = {
 const ProfileCard = ({ member }: Props) => {
   return (
     <div className={styles.card}>
-      <div className={styles.avatar} />
-
       <div className={styles.info}>
         <p className={styles.name}>{member.name}</p>
         <p className={styles.email}>{member.email}</p>
