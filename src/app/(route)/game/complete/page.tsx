@@ -7,6 +7,16 @@ import styles from './page.module.scss';
 
 export default function GameComplete() {
   const router = useRouter();
+  const setItem = (key: string, item: string) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(key, item);
+    }
+  };
+
+  const onClick = () => {
+    setItem('isCompletedSurvey', 'true');
+    router.push('/');
+  };
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -35,7 +45,7 @@ export default function GameComplete() {
         </div>
       </div>
       <div className={styles.footer}>
-        <Button color="primary" onClick={() => router.push('/')}>
+        <Button color="primary" onClick={onClick}>
           완료
         </Button>
       </div>

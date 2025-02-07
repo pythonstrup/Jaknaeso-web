@@ -7,12 +7,12 @@
   bottom: 4.25rem;
   max-width: 32rem;
 
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 8px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .handle {
+  padding-top: 0.5rem;
   width: 100%;
   @include flex-center;
   svg {

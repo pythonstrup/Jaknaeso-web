@@ -2,7 +2,7 @@
   width: 100%;
   flex: 1;
   height: 100vh;
-  background-color: $neutral-050;
+  background-color: #f8f8fa;
 }
 
 .container {
@@ -20,7 +20,7 @@
   width: 100%;
   position: fixed;
   left: 50%;
-  bottom: 303px;
+  bottom: 19.875rem;
   transform: translate(-50%, -50%);
   @include flex-center;
 }

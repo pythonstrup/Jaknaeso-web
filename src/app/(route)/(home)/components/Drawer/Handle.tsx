@@ -8,9 +8,9 @@ interface DrawerHandleProp {
 }
 export default function DrawerHandle({ isOpen, onClick }: DrawerHandleProp) {
   return (
-    <div className={style.handle}>
-      {isOpen && <ArrowUp2Icon width={30} height={30} color="#D4D7E2" onClick={onClick} />}
-      {!isOpen && <ArrowDown2Icon width={30} height={30} color="#D4D7E2" onClick={onClick} />}
+    <div className={style.handle} onClick={onClick}>
+      {isOpen && <ArrowUp2Icon width={30} height={30} color="#D4D7E2" />}
+      {!isOpen && <ArrowDown2Icon width={30} height={30} color="#D4D7E2" />}
     </div>
   );
 }

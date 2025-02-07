@@ -1,10 +1,7 @@
 'use client';
 
-import { type PropsWithChildren, useEffect } from 'react';
-import type { PanInfo } from 'framer-motion';
-import { motion, useAnimation } from 'framer-motion';
-
-import { usePreviousValue } from '@/hooks';
+import { type PropsWithChildren } from 'react';
+import { motion } from 'framer-motion';
 
 import styles from './Drawer.module.scss';
 import DrawerHandle from './Handle';
@@ -19,36 +16,22 @@ interface DrawerProps {
 }
 export default function Drawer({ isOpen, setIsOpen, children }: PropsWithChildren<DrawerProps>) {
   // const { onDragEnd, controls, isOpen } = useDrawer();
-
-  const controls = useAnimation();
-  const prevIsOpen = usePreviousValue(isOpen);
-
-  const onDragEnd = (event: PointerEvent, { point, velocity }: PanInfo): void => {
-    const shouldClose = event.type === 'pointerdown' || velocity?.y < 487;
-
-    if (shouldClose) {
-      controls.start('hidden');
-      setIsOpen(false);
-    } else {
-      controls.start('visible');
-      setIsOpen(true);
-    }
-  };
-
-  useEffect(() => {
-    if (prevIsOpen && !isOpen) {
-      controls.start('hidden');
-    } else if (!prevIsOpen && isOpen) {
-      controls.start('visible');
-    }
-  }, [controls, isOpen, prevIsOpen]);
+  const animateState = isOpen ? 'visible' : 'hidden';
 
   return (
     <motion.div
       drag="y"
-      onDragEnd={onDragEnd}
-      initial="visible"
-      animate={controls}
+      onDragEnd={(event, info) => {
+        const offsetThreshold = 150;
+        const deltaThreshold = 5;
+        const isOverOffsetThreshold = Math.abs(info.offset.y) > offsetThreshold;
+        const isOverDeltaThreshold = Math.abs(info.delta.y) > deltaThreshold;
+        const isOverThreshold = isOverOffsetThreshold || isOverDeltaThreshold;
+        if (!isOverThreshold) return;
+        const newIsOpened = info.offset.y >= 0;
+        setIsOpen(newIsOpened);
+      }}
+      animate={animateState}
       variants={{
         visible: { bottom: '4.25rem', height: 261 },
         hidden: { bottom: '4.25rem', height: 500 },
