@@ -1,6 +1,6 @@
 .container {
   @include flex-column;
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 1.125rem 1.75rem 1.125rem;
   background-color: $white;
   text-align: center;
@@ -34,6 +34,7 @@
 
 .content {
   flex: 1;
+  margin-bottom: 30px;
 }
 
 .footer {

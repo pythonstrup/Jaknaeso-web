@@ -11,6 +11,11 @@ const UserActionFooter = ({ memberId }: Props) => {
   const router = useRouter();
   const handleLogout = () => {
     router.push('/select');
+    localStorage.removeItem('surveyType');
+    localStorage.removeItem('report');
+    localStorage.removeItem('retrospective');
+    localStorage.removeItem('isCompletedSurvey');
+    localStorage.removeItem('character');
   };
   const handleWithdraw = () => {};
   return (
