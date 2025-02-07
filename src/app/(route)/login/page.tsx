@@ -5,8 +5,11 @@ import { redirectUri } from '@/libs';
 import { isIOS, isMacOs } from 'react-device-detect';
 
 import styles from './login.module.scss';
+import { useAuthMutation } from '@/query-hooks/useAuth';
 
 export default function LoginPage() {
+  const { postAppleAuth } = useAuthMutation();
+
   const handleKakaoLogin = () => {
     window.Kakao.Auth.authorize({
       redirectUri,
@@ -16,6 +19,7 @@ export default function LoginPage() {
     const data = await window.AppleID.auth.signIn();
     const idToken = data.authorization.id_token;
     const name = (data.user?.name?.lastName ?? '') + (data.user?.name?.firstName ?? '');
+    await postAppleAuth.mutateAsync({ idToken, name });
   };
   return (
     <div className={styles.container}>

@@ -1,7 +1,11 @@
 export type AuthParams = {
-  post: {
+  postKakao: {
     code: string;
     redirectUri: string;
+  };
+  postApple: {
+    idToken: string;
+    name: string;
   };
 };
 
