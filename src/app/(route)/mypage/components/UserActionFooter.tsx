@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 import styles from './UserActionFooter.module.scss';
 
@@ -7,7 +8,10 @@ type Props = {
 };
 
 const UserActionFooter = ({ memberId }: Props) => {
-  const handleLogout = () => {};
+  const router = useRouter();
+  const handleLogout = () => {
+    router.push('/select');
+  };
   const handleWithdraw = () => {};
   return (
     <div className={styles.actionsContainer}>
