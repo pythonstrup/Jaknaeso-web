@@ -1,0 +1,13 @@
+.characterButton {
+  font-weight: 600;
+  color: #000 !important;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 0 1rem 2rem;
+  cursor: pointer;
+}
+
+.characterButtonIcon {
+  color: $neutral-600;
+}
