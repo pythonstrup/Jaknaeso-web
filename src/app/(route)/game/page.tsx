@@ -137,6 +137,7 @@ export default function Game() {
       closeSheet={() => setOpen(false)}
       goToResultPage={goToResultPage}
       className={surveyType === 'balance' ? styles.container : ''}
+      surveyType={surveyType}
     >
       {surveyType === 'balance' ? (
         <FlipCard options={survey.options} onSelect={setAnswer} />
