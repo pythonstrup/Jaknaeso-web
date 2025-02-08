@@ -19,7 +19,6 @@ const GameBottomSheet = ({
 
   const saveRetrospective = () => {
     goToResultPage();
-    localStorage.setItem('retrospective', content);
   };
 
   return (

@@ -1,8 +1,8 @@
+import { usePathname } from 'next/navigation';
 import { TabNav } from '@radix-ui/themes';
+import cn from 'classnames';
 
 import styles from './TabNav.module.scss';
-import cn from 'classnames';
-import { usePathname } from 'next/navigation';
 
 interface CustomTabNavProps {
   tabs: Tab[];

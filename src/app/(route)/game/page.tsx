@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Slider } from '@/components/Slider';
@@ -55,14 +55,6 @@ const MOCK_DATA_MULTIPLE = {
   ],
 };
 
-const labels = {
-  100: '매우 동의해요',
-  75: '조금 동의해요',
-  50: '보통이에요',
-  25: '조금 반대해요',
-  0: '매우 반대해요',
-};
-
 type SurveyType = 'balance' | 'multiple';
 
 const MOCK_DATA: Record<SurveyType, typeof MOCK_DATA_BALANCE | typeof MOCK_DATA_MULTIPLE> = {
@@ -77,56 +69,15 @@ const MultipleChoice = ({ initialValue, onSelect }: { initialValue: number; onSe
 );
 
 export default function Game() {
-  const [surveyType, setSurveyType] = useState<SurveyType>('balance');
   const [open, setOpen] = useState(false);
   const [answer, setAnswer] = useState(0);
   const router = useRouter();
 
-  const getSurveyType = () => {
-    if (localStorage.getItem('surveyType')) {
-      return localStorage.getItem('surveyType');
-    }
-    return 'balance';
-  };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const type = getSurveyType() as SurveyType;
-      setSurveyType(type);
-
-      setAnswer(type === 'multiple' ? 50 : 0);
-    }
-  }, []);
-
-  const survey = MOCK_DATA[surveyType];
-
-  const saveResult = (type: SurveyType) => {
-    if (type === 'balance') {
-      localStorage.setItem(
-        'report',
-        JSON.stringify({
-          date: new Date(),
-          count: 1,
-          question: MOCK_DATA_BALANCE.contents,
-          answer: MOCK_DATA_BALANCE.options[answer].optionContents,
-        }),
-      );
-    } else {
-      localStorage.setItem(
-        'report',
-        JSON.stringify({
-          date: new Date(),
-          count: 1,
-          question: MOCK_DATA_MULTIPLE.contents,
-          answer: labels[answer as keyof typeof labels],
-        }),
-      );
-    }
-  };
+  const surveyType = 'balance' as SurveyType;
+  const survey = MOCK_DATA.balance;
 
   const goToResultPage = () => {
     router.push(ROUTES.gameComplete);
-    saveResult(surveyType);
   };
 
   return (

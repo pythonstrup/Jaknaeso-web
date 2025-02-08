@@ -1,4 +1,4 @@
-import { clientApi } from '@/libs/api/client';
+import { clientApi } from '@/libs/api/api.client';
 
 const getTest = async () => {
   try {

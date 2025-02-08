@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import dayjs from 'dayjs';
 
+import CharacterSelectBottomSheet from '@/app/(route)/report/components/CharacterSelectBottomSheet';
+import CharacterSelectButton from '@/app/(route)/report/components/CharacterSelectButton';
+import CharacterTabNav from '@/app/(route)/report/components/CharacterTabNav';
 import { Card } from '@/components/Card';
 
 import styles from './page.module.scss';
-import CharacterTabNav from '@/app/(route)/report/components/CharacterTabNav';
-import CharacterSelectButton from '@/app/(route)/report/components/CharacterSelectButton';
-import CharacterSelectBottomSheet from '@/app/(route)/report/components/CharacterSelectBottomSheet';
 
 type Character = {
   id: number;

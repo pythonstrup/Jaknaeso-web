@@ -7,14 +7,8 @@ import styles from './page.module.scss';
 
 export default function GameComplete() {
   const router = useRouter();
-  const setItem = (key: string, item: string) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(key, item);
-    }
-  };
 
   const onClick = () => {
-    setItem('isCompletedSurvey', 'true');
     router.push('/');
   };
   return (

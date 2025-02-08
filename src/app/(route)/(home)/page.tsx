@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import { LineIcon } from '@/assets/icons';
 import { Button } from '@/components/Button';
@@ -20,17 +20,6 @@ const DrawerFooter = dynamic(() => import('./components/Drawer/Footer'), { ssr: 
 export default function Home() {
   const routes = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [isCompleted, setIsCompleted] = useState<string>();
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const surveyType = localStorage.getItem('surveyType');
-      if (!surveyType) {
-        redirect(ROUTES.selectGame);
-      }
-      setIsCompleted(localStorage.getItem('isCompletedSurvey') as string);
-    }
-  }, []);
 
   return (
     <div className={styles.layout}>
@@ -45,7 +34,7 @@ export default function Home() {
           <Capsule className={styles.capsule}>
             <label>캐릭터 완성까지</label>
             <LineIcon color="#A9AEBA" />
-            <label>{`${isCompleted ? 14 : 15}개`}</label>
+            <label>15 개</label>
           </Capsule>
         </div>
         <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -54,12 +43,8 @@ export default function Home() {
               <LockBtn
                 label="1회차"
                 className={styles.lock}
-                variant={isCompleted ? 'completedToday' : 'default'}
-                onClick={() => {
-                  if (!isCompleted) {
-                    routes.push(ROUTES.game);
-                  }
-                }}
+                variant="default"
+                onClick={() => routes.push(ROUTES.game)}
               />
               <LockBtn label="2회차" className={styles.lock} disabled />
               <LockBtn label="3회차" className={styles.lock} disabled />
@@ -83,7 +68,7 @@ export default function Home() {
             </div>
           </DrawerContent>
           <DrawerFooter>
-            <Button style={{ height: '58px' }} onClick={() => routes.push(ROUTES.game)} disabled={Boolean(isCompleted)}>
+            <Button style={{ height: '58px' }} onClick={() => routes.push(ROUTES.game)}>
               오늘의 질문 답변하기
             </Button>
           </DrawerFooter>
