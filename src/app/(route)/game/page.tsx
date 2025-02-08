@@ -55,6 +55,14 @@ const MOCK_DATA_MULTIPLE = {
   ],
 };
 
+const labels = {
+  100: '매우 동의해요',
+  75: '조금 동의해요',
+  50: '보통이에요',
+  25: '조금 반대해요',
+  0: '매우 반대해요',
+};
+
 type SurveyType = 'balance' | 'multiple';
 
 const MOCK_DATA: Record<SurveyType, typeof MOCK_DATA_BALANCE | typeof MOCK_DATA_MULTIPLE> = {
@@ -62,28 +70,21 @@ const MOCK_DATA: Record<SurveyType, typeof MOCK_DATA_BALANCE | typeof MOCK_DATA_
   multiple: MOCK_DATA_MULTIPLE,
 };
 
-const MultipleChoice = () => {
-  const [value, setValue] = useState(50);
-  return (
-    <div className={styles.sliderContainer}>
-      <Slider value={value} setValue={setValue} />
-    </div>
-  );
-};
+const MultipleChoice = ({ initialValue, onSelect }: { initialValue: number; onSelect: (id: number) => void }) => (
+  <div className={styles.sliderContainer}>
+    <Slider value={initialValue} setValue={onSelect} />
+  </div>
+);
 
 export default function Game() {
   const [surveyType, setSurveyType] = useState<SurveyType>('balance');
   const [open, setOpen] = useState(false);
+  const [answer, setAnswer] = useState(0);
   const router = useRouter();
-
-  const goToResultPage = () => {
-    router.push(ROUTES.gameComplete);
-  };
 
   const getSurveyType = () => {
     if (localStorage.getItem('surveyType')) {
-      const type = localStorage.getItem('surveyType');
-      return type;
+      return localStorage.getItem('surveyType');
     }
     return 'balance';
   };
@@ -92,10 +93,41 @@ export default function Game() {
     if (typeof window !== 'undefined') {
       const type = getSurveyType() as SurveyType;
       setSurveyType(type);
+
+      setAnswer(type === 'multiple' ? 50 : 0);
     }
   }, []);
 
   const survey = MOCK_DATA[surveyType];
+
+  const saveResult = (type: SurveyType) => {
+    if (type === 'balance') {
+      localStorage.setItem(
+        'report',
+        JSON.stringify({
+          date: new Date(),
+          count: 1,
+          question: MOCK_DATA_BALANCE.contents,
+          answer: MOCK_DATA_BALANCE.options[answer].optionContents,
+        }),
+      );
+    } else {
+      localStorage.setItem(
+        'report',
+        JSON.stringify({
+          date: new Date(),
+          count: 1,
+          question: MOCK_DATA_MULTIPLE.contents,
+          answer: labels[answer as keyof typeof labels],
+        }),
+      );
+    }
+  };
+
+  const goToResultPage = () => {
+    router.push(ROUTES.gameComplete);
+    saveResult(surveyType);
+  };
 
   return (
     <GamePageLayout
@@ -105,8 +137,13 @@ export default function Game() {
       closeSheet={() => setOpen(false)}
       goToResultPage={goToResultPage}
       className={surveyType === 'balance' ? styles.container : ''}
+      surveyType={surveyType}
     >
-      {surveyType === 'balance' ? <FlipCard options={survey.options} /> : <MultipleChoice />}
+      {surveyType === 'balance' ? (
+        <FlipCard options={survey.options} onSelect={setAnswer} />
+      ) : (
+        <MultipleChoice initialValue={answer} onSelect={setAnswer} />
+      )}
     </GamePageLayout>
   );
 }

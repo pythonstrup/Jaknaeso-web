@@ -29,7 +29,7 @@ export default function GameComplete() {
       </div>
       <div className={styles.content}>
         {/* 로티 이미지 들어갈 부분, 임시 조치 */}
-        <div
+        {/* <div
           style={{
             width: '220px',
             height: '220px',
@@ -42,7 +42,7 @@ export default function GameComplete() {
           }}
         >
           로티 애니메이션
-        </div>
+        </div> */}
       </div>
       <div className={styles.footer}>
         <Button color="primary" onClick={onClick}>

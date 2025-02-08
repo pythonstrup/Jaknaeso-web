@@ -10,10 +10,16 @@ interface FlipCardProps {
     id: number;
     optionContents: string;
   }[];
+  onSelect: (id: number) => void;
 }
 
-const FlipCard = ({ options }: FlipCardProps) => {
+const FlipCard = ({ options, onSelect }: FlipCardProps) => {
   const [isFlipped, toggleFlip] = useCycle(false, true);
+
+  const onClick = (id: number) => {
+    toggleFlip();
+    onSelect(id);
+  };
 
   return (
     <div className={styles.cardContainer}>
@@ -26,7 +32,7 @@ const FlipCard = ({ options }: FlipCardProps) => {
         >
           <p className={styles.cardTitle}>첫번째 질문</p>
           <h3 className="title3">{options[0].optionContents}</h3>
-          <TextButton onClick={() => toggleFlip()} className={styles.nextButton}>
+          <TextButton onClick={() => onClick(1)} className={styles.nextButton}>
             다음 답변 선택 <ArrowRightIcon width="1.5rem" height="1.5rem" />
           </TextButton>
         </motion.div>
@@ -38,7 +44,7 @@ const FlipCard = ({ options }: FlipCardProps) => {
         >
           <p className={styles.cardTitle}>두번째 질문</p>
           <h3 className="title3">{options[1].optionContents}</h3>
-          <TextButton onClick={() => toggleFlip()} className={styles.nextButton}>
+          <TextButton onClick={() => onClick(0)} className={styles.nextButton}>
             다음 답변 선택 <ArrowRightIcon width="1.5rem" height="1.5rem" />
           </TextButton>
         </motion.div>

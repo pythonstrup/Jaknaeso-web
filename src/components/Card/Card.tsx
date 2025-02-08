@@ -1,11 +1,12 @@
 import { Card as CardComponent } from '@radix-ui/themes';
+import cn from 'classnames';
 import { Accordion, Separator } from 'radix-ui';
 
 import { ArrowDown2Icon as ArrowDownIcon } from '@/assets/icons';
 
-import styles from './Card.module.scss';
+import { Chip } from '../Chip';
 
-import '@radix-ui/themes/styles.css';
+import styles from './Card.module.scss';
 
 interface CardContentsProps {
   question: string;
@@ -15,6 +16,7 @@ interface CardContentsProps {
 
 interface CardProps extends CardContentsProps {
   date: string;
+  count: number;
   hiddenCollapse?: boolean;
   isOpen?: boolean;
   className?: string;
@@ -40,18 +42,22 @@ const CardContents = ({ question, answer, retrospective }: CardContentsProps) =>
   </div>
 );
 
-const BasicCard = ({ date, question, answer, retrospective }: CardProps) => (
+const BasicCard = ({ count, date, question, answer, retrospective }: CardProps) => (
   <div className={styles.container}>
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <h3 className="subtitle3">{date}</h3>
+        <h3 className="subtitle3">{count}회차</h3>
       </div>
+      <Chip size="sm" color="neutral" className={styles.chip}>
+        {date}
+      </Chip>
       <CardContents question={question} answer={answer} retrospective={retrospective} />
     </div>
   </div>
 );
 
 export default function Card({
+  count,
   date,
   question,
   answer,
@@ -61,22 +67,25 @@ export default function Card({
   className,
 }: CardProps) {
   if (hiddenCollapse) {
-    return <BasicCard date={date} question={question} answer={answer} />;
+    return <BasicCard count={count} date={date} question={question} answer={answer} />;
   }
 
   return (
-    <div className={`${styles.container} ${className}`}>
+    <div className={cn(styles.container, className)}>
       <Accordion.Root type="single" collapsible {...(isOpen ? { defaultValue: 'item-1' } : {})}>
         <Accordion.Item value="item-1">
           <Accordion.Trigger className={styles.trigger}>
             <CardComponent className={styles.wrapper}>
               <Accordion.Header className={styles.header}>
                 <div className={styles.date}>
-                  <h4 className={styles.cardSubTitle4}>{date}</h4>
+                  <h4 className={styles.cardSubTitle4}>{count}회차</h4>
                   <ArrowDownIcon width="1.5rem" height="1.5rem" className={styles.icon} />
                 </div>
               </Accordion.Header>
               <Accordion.Content className={styles.contents}>
+                <Chip size="sm" color="neutral" className={styles.chip}>
+                  {date}
+                </Chip>
                 <CardContents question={question} answer={answer} retrospective={retrospective} />
               </Accordion.Content>
             </CardComponent>

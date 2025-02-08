@@ -9,8 +9,8 @@
 
 .flipCard {
   position: relative;
-  width: 22.125rem;
-  height: 26.875rem;
+  width: 20rem;
+  height: 25rem;
   transform-style: preserve-3d;
 }
 
@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 7rem 2.125rem 0 2.125rem;
+  padding: 5rem 2.125rem 0;
   position: absolute;
   width: 100%;
   height: 100%;
