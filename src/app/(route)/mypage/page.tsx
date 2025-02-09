@@ -1,10 +1,7 @@
 'use client';
 
 import React from 'react';
-
-import ProfileCard from './components/ProfileCard';
 import UserActionFooter from './components/UserActionFooter';
-import UserSettings from './components/UserSettings';
 
 type Member = {
   memberId: number;
@@ -18,8 +15,6 @@ export default function MyPage() {
 
   return (
     <div>
-      <ProfileCard member={member} />
-      <UserSettings />
       <UserActionFooter memberId={member.memberId} />
     </div>
   );

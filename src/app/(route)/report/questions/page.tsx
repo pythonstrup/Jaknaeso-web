@@ -22,30 +22,13 @@ type Question = {
   retrospective: string;
 };
 
-type Month = {
-  month: string;
-  disabled: boolean;
-};
-
-const mockQuestions = Array.from({ length: 1 }, (_, i) => {
-  return {
-    date: `2025-01-${String(i + 1).padStart(2, '0')}`,
-    question: '커리어를 향상시킬 수 있는 일자리이지만 가까운 사람들과 멀어져야한다면, 이 일자리를 선택하실 건가요?',
-    answer: '주변 사람과 물리적으로 멀어지더라도, 커리어를 선택한다.',
-    retrospective:
-      '가까운 사람들과 물리적으로 멀어지더라도 그 관계가 사라지진 않음.  내 노력에 따라 관계는 달라질 수 있지만 커리어 기회는 원할 때 오는게 아님',
-  };
-});
+const mockQuestions: Question[] = [];
 
 const MOCK_CHARACTER1 = {
   id: 1,
   name: '첫번째 캐릭터',
 };
-const MOCK_CHARACTER2 = {
-  id: 2,
-  name: '두번째 캐릭터',
-};
-const MOCK_CHARACTERS = [MOCK_CHARACTER1, MOCK_CHARACTER2];
+const MOCK_CHARACTERS = [MOCK_CHARACTER1];
 
 export default function ReportQuestions() {
   const [open, setOpen] = useState(false);

@@ -5,9 +5,9 @@ import Script from 'next/script';
 export default function AppleScript() {
   const handleAppleInit = () => {
     window.AppleID.auth.init({
-      clientId: 'com.jaknaeso.login',
+      clientId: `${process.env.NEXT_PUBLIC_APPLE_SERVICE}`,
       scope: 'name email',
-      redirectURI: `${process.env.NEXT_PUBLIC_URL}/oauth2/login/code/apple`,
+      redirectURI: `${process.env.NEXT_PUBLIC_APPLE_REDIRECT_URI}`,
       state: '550e8400-e29b-41d4-a716-446655440000',
       usePopup: true,
     });
