@@ -8,11 +8,11 @@ import { useAuthMutation } from '@/query-hooks/useAuth';
 
 export default function LoginKakaoPage() {
   const searchParams = useSearchParams();
-  const { postAuth } = useAuthMutation();
+  const { postKakaoAuth } = useAuthMutation();
 
   useEffect(() => {
     if (searchParams.get('code')) {
-      postAuth.mutateAsync({ code: searchParams.get('code') as string, redirectUri });
+      postKakaoAuth.mutateAsync({ code: searchParams.get('code') as string, redirectUri });
     }
   }, [searchParams]);
 

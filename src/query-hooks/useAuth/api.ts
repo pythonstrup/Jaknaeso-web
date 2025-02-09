@@ -4,8 +4,13 @@ import type { ResponseDTO } from '@/types';
 
 import type { AuthParams, AuthResponse } from './types';
 
-const post = async (body: AuthParams['post']) => {
+const postKakao = async (body: AuthParams['postKakao']) => {
   const res = await withoutTokenApi.post<ResponseDTO<AuthResponse>>(`/api/v1/auth/kakao-login`, body);
+  return res;
+};
+
+const postApple = async (body: AuthParams['postApple']) => {
+  const res = await withoutTokenApi.post<ResponseDTO<AuthResponse>>(`/api/v1/auth/apple-login`, body);
   return res;
 };
 
@@ -25,6 +30,6 @@ const reissue = async (token: string) => {
   return data.data.accessToken;
 };
 
-const authApis = { post, reissue };
+const authApis = { postKakao, postApple, reissue };
 
 export default authApis;

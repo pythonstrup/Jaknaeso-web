@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
+import { AppleScript } from '@/components/appleScript';
 import { KakaoScript } from '@/components/KakaoScript';
 
 import ReactQueryProviders from '../providers/ReactQueryProvider';
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <KakaoScript />
+        <AppleScript />
       </head>
       <body>
         <ReactQueryProviders>
