@@ -4,10 +4,6 @@ import cn from 'classnames';
 import { CheckIcon, LockIcon } from '@/assets/icons';
 
 import styles from './LockBtn.module.scss';
-interface LockBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
-  variant?: 'completed' | 'default' | 'completedToday';
-}
 
 const OPTIONS = {
   disabled: {
@@ -27,6 +23,12 @@ const OPTIONS = {
     iconColor: '#3F78FF',
   },
 };
+export type LockBtnVariant = keyof typeof OPTIONS;
+
+interface LockBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  label: string;
+  variant?: LockBtnVariant;
+}
 
 export default function LockBtn({ label, variant = 'default', className, disabled, ...props }: LockBtnProps) {
   const type = disabled ? 'disabled' : variant;
