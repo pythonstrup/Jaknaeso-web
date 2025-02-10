@@ -32,7 +32,11 @@ export default function BottomSheetMain({
       </Dialog.Trigger> */}
       <Dialog.Portal>
         <Dialog.Overlay className={style.overlay} />
-        <Dialog.Content className={style.content} style={{ height: `${height}px` }}>
+        <Dialog.Content
+          className={style.content}
+          style={{ height: `${height}px` }}
+          onOpenAutoFocus={(event: Event) => event.preventDefault()}
+        >
           <Dialog.Title className={style.header}>
             {title}
             {closeIcon && <CloseIcon width={24} height={24} onClick={closeSheet} />}
