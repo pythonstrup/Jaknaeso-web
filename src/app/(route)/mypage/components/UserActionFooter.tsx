@@ -1,10 +1,11 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
+
+import { ROUTES } from '@/constants';
+import { clearTokens } from '@/libs/cookie/manageCookie.client';
+import memberApis from '@/query-hooks/useMember/api';
 
 import styles from './UserActionFooter.module.scss';
-import { useRouter } from 'next/navigation';
-import { ROUTES } from '@/constants';
-import memberApis from '@/query-hooks/useMember/api';
-import { clearTokens } from '@/libs/cookie/manageCookie.client';
 
 type Props = {
   memberId: number;

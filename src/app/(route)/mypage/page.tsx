@@ -1,20 +1,17 @@
 'use client';
 
 import React from 'react';
+
+import { useMemberStore } from '@/stores';
+
+import ProfileCard from './components/ProfileCard';
 import UserActionFooter from './components/UserActionFooter';
 
-type Member = {
-  memberId: number;
-  name: string;
-  email: string;
-};
-
 export default function MyPage() {
-  const mock = { memberId: 1, name: '홍길동', email: 'hong@naver.com' };
-  const [member, setMember] = React.useState<Member>(mock);
-
+  const { member } = useMemberStore();
   return (
     <div>
+      <ProfileCard member={member} />
       <UserActionFooter memberId={member.memberId} />
     </div>
   );
