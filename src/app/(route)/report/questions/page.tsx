@@ -1,19 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 
-import CharacterSelectBottomSheet from '@/app/(route)/report/components/CharacterSelectBottomSheet';
-import CharacterSelectButton from '@/app/(route)/report/components/CharacterSelectButton';
-import CharacterTabNav from '@/app/(route)/report/components/CharacterTabNav';
 import { Card } from '@/components/Card';
-
 import styles from './page.module.scss';
-
-type Character = {
-  id: number;
-  name: string;
-};
+import CharacterSelectLayout from '../components/CharacterSelectLayout';
+import { useGetCharacters } from '@/query-hooks/useCharacter';
+import { useMemberStore } from '@/stores';
+import type { CharacterItem } from '@/query-hooks/useCharacter/types';
 
 type Question = {
   date: string;
@@ -24,19 +19,14 @@ type Question = {
 
 const mockQuestions: Question[] = [];
 
-const MOCK_CHARACTER1 = {
-  id: 1,
-  name: '첫번째 캐릭터',
-};
-const MOCK_CHARACTERS = [MOCK_CHARACTER1];
-
 export default function ReportQuestions() {
   const [open, setOpen] = useState(false);
-  const [characters, setCharacters] = useState<Character[]>(MOCK_CHARACTERS);
-  const [selectedCharacter, setSelectedCharacter] = useState<Character>(MOCK_CHARACTER1);
   const [questions, setQuestions] = useState(mockQuestions);
+  const [selectedCharacter, setSelectedCharacter] = useState<CharacterItem>({ ordinalNumber: 0, bundleId: 0 });
 
-  const handleCharacter = (character: Character) => {
+  const { data: characterData = { characters: [] } } = useGetCharacters({ memberId: useMemberStore().getMemberId() });
+
+  const handleCharacter = (character: CharacterItem) => {
     setSelectedCharacter(character);
     setOpen(false);
   };
@@ -46,10 +36,21 @@ export default function ReportQuestions() {
     return dayjs(date).format(format);
   };
 
+  useEffect(() => {
+    if (characterData && characterData.characters.length > 0) {
+      setSelectedCharacter(characterData.characters[0]);
+    }
+  }, [characterData]);
+
   return (
-    <div>
-      <CharacterSelectButton selectedCharacterName={selectedCharacter.name} onClick={() => setOpen(true)} />
-      <CharacterTabNav />
+    <CharacterSelectLayout
+      open={open}
+      selectedCharacter={selectedCharacter}
+      characters={characterData.characters}
+      onButtonClick={() => setOpen(true)}
+      onCloseSheet={() => setOpen(false)}
+      onSelect={handleCharacter}
+    >
       <div className={styles.contentContainer}>
         {questions.map((question, index) => (
           <Card
@@ -63,13 +64,6 @@ export default function ReportQuestions() {
           />
         ))}
       </div>
-      <CharacterSelectBottomSheet
-        open={open}
-        characters={characters}
-        selectedCharacter={selectedCharacter}
-        onCloseSheet={() => setOpen(true)}
-        onSelect={handleCharacter}
-      />
-    </div>
+    </CharacterSelectLayout>
   );
 }
