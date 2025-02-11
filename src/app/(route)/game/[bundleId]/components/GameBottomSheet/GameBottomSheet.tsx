@@ -1,24 +1,34 @@
 import { useState } from 'react';
+import { useParams } from 'next/navigation';
 
 import { BottomSheet } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
 import { Textfield } from '@/components/Textfield';
+import { useSubmitSurvey } from '@/query-hooks/useSurvey';
 
 import styles from './GameBottomSheet.module.scss';
 
 const GameBottomSheet = ({
   isOpen,
   closeSheet,
-  goToResultPage,
+  optionId,
 }: {
   isOpen: boolean;
   closeSheet: VoidFunction;
-  goToResultPage: VoidFunction;
+  optionId: number;
 }) => {
+  const { bundleId } = useParams();
   const [content, setContent] = useState('');
+  const submitSurvey = useSubmitSurvey();
 
   const saveRetrospective = () => {
-    goToResultPage();
+    submitSurvey.mutate({
+      bundleId: bundleId as string,
+      survey: {
+        optionId,
+        comment: content,
+      },
+    });
   };
 
   return (
@@ -34,7 +44,7 @@ const GameBottomSheet = ({
         <Button color="primary" onClick={saveRetrospective}>
           작성 완료
         </Button>
-        <Button color="neutral" onClick={goToResultPage}>
+        <Button color="neutral" onClick={saveRetrospective}>
           넘어가기
         </Button>
       </BottomSheet.Footer>

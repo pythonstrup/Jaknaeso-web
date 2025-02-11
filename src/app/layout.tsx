@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { AppleScript } from '@/components/appleScript';
 import { KakaoScript } from '@/components/KakaoScript';
@@ -44,6 +45,7 @@ export default function RootLayout({
           <div className="container">
             <main className="layout">{children}</main>
           </div>
+          <ReactQueryDevtools />
         </ReactQueryProviders>
       </body>
     </html>
