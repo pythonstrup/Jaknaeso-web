@@ -5,7 +5,7 @@ import { ROUTES } from '@/constants';
 
 import surveyApis from './api.client';
 import surveyKeys from './keys';
-import type { HistoryResponse, SurveySubmissionArgs, TodaySurveyResponse } from './types';
+import type { HistoryResponse, SurveySubmissionArgs, SurveySubmissionResponse, TodaySurveyResponse } from './types';
 
 const useGetSurvey = (options?: UseQueryOptions<HistoryResponse, Error>) => {
   return useQuery<HistoryResponse, Error>({
@@ -37,4 +37,16 @@ const useSubmitSurvey = (options?: UseMutationOptions<null, Error, SurveySubmiss
   });
 };
 
-export { useGetSurvey, useGetTodaySurvey, useSubmitSurvey };
+const useGetSubmissions = (
+  memberId: number,
+  bundleId: string,
+  options?: UseQueryOptions<SurveySubmissionResponse, Error>,
+) => {
+  return useQuery<SurveySubmissionResponse, Error>({
+    queryKey: surveyKeys.list([bundleId]),
+    queryFn: () => surveyApis.getSubmissions(memberId, { bundleId: Number(bundleId) }),
+    ...options,
+  });
+};
+
+export { useGetSubmissions, useGetSurvey, useGetTodaySurvey, useSubmitSurvey };

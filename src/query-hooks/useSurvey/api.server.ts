@@ -3,7 +3,7 @@ import type { QueryFunction } from '@tanstack/react-query';
 import { serverApi } from '@/libs/api/api.server';
 import type { ResponseDTO } from '@/types';
 
-import type { HistoryResponse, TodaySurveyResponse } from './types';
+import type { HistoryResponse, SurveyParams, SurveySubmissionResponse, TodaySurveyResponse } from './types';
 
 const getHistory = async () => {
   const res = await serverApi.get<ResponseDTO<HistoryResponse>>(`/api/v1/surveys/history`);
@@ -16,6 +16,14 @@ const getTodaySurvey: QueryFunction<TodaySurveyResponse> = async ({ queryKey }) 
   return res.data.data;
 };
 
-const surveyServerApis = { getHistory, getTodaySurvey };
+const getSubmissions = async (memberId: number, params: SurveyParams['get']) => {
+  const res = await serverApi.get<ResponseDTO<SurveySubmissionResponse>>(
+    `/api/v1/surveys/members/${memberId}/submissions`,
+    { params },
+  );
+  return res.data.data;
+};
+
+const surveyServerApis = { getHistory, getTodaySurvey, getSubmissions };
 
 export default surveyServerApis;

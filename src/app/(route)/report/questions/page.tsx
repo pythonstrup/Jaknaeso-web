@@ -9,22 +9,17 @@ import CharacterSelectLayout from '../components/CharacterSelectLayout';
 import { useGetCharacters } from '@/query-hooks/useCharacter';
 import { useMemberStore } from '@/stores';
 import type { CharacterItem } from '@/query-hooks/useCharacter/types';
-
-type Question = {
-  date: string;
-  question: string;
-  answer: string;
-  retrospective: string;
-};
-
-const mockQuestions: Question[] = [];
+import { useGetSubmissions } from '@/query-hooks/useSurvey';
 
 export default function ReportQuestions() {
   const [open, setOpen] = useState(false);
-  const [questions, setQuestions] = useState(mockQuestions);
   const [selectedCharacter, setSelectedCharacter] = useState<CharacterItem>({ ordinalNumber: 0, bundleId: 0 });
 
   const { data: characterData = { characters: [] } } = useGetCharacters({ memberId: useMemberStore().getMemberId() });
+  const { data: submissionData = { surveyRecords: [] } } = useGetSubmissions(
+    useMemberStore().getMemberId(),
+    String(selectedCharacter.bundleId),
+  );
 
   const handleCharacter = (character: CharacterItem) => {
     setSelectedCharacter(character);
@@ -52,11 +47,11 @@ export default function ReportQuestions() {
       onSelect={handleCharacter}
     >
       <div className={styles.contentContainer}>
-        {questions.map((question, index) => (
+        {submissionData.surveyRecords.map((question, index) => (
           <Card
             key={index}
             count={index + 1}
-            date={formatDate(question.date)}
+            date={formatDate(question.submittedAt)}
             question={question.question}
             answer={question.answer}
             retrospective={question.retrospective}

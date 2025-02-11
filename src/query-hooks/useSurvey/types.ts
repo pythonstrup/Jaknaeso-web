@@ -1,5 +1,11 @@
 export type SurveyType = 'MULTIPLE_CHOICE' | 'BALANCE';
 
+export type SurveyParams = {
+  get: {
+    bundleId: number;
+  };
+};
+
 export type SurveySubmissionId = {
   submissionId: number;
 };
@@ -31,4 +37,15 @@ export type SurveySubmission = {
 export type SurveySubmissionArgs = {
   bundleId: string;
   survey: SurveySubmission;
+};
+
+export type SurveySubmissionResponse = {
+  surveyRecords: CompletedSurveySubmission[];
+};
+
+export type CompletedSurveySubmission = {
+  question: string;
+  answer: string;
+  retrospective: string;
+  submittedAt: string;
 };
