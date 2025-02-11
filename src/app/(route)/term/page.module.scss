@@ -1,0 +1,27 @@
+.container {
+}
+
+.titleContainer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.icon {
+  margin-top: 0.5rem;
+  position: fixed;
+  cursor: pointer;
+}
+
+.title {
+}
+
+.content {
+  padding: 0rem 2rem;
+  margin-bottom: 1rem;
+
+  ul {
+    padding: 0.5rem 0 0 1.5rem;
+  }
+}
