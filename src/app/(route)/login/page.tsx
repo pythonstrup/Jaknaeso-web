@@ -1,11 +1,13 @@
 'use client';
 
+import { isIOS, isMacOs } from 'react-device-detect';
+import Link from 'next/link';
+
 import { AppleLoginButton, KakaoLoginButton } from '@/assets/buttons';
 import { redirectUri } from '@/libs';
-import { isIOS, isMacOs } from 'react-device-detect';
+import { useAuthMutation } from '@/query-hooks/useAuth';
 
 import styles from './login.module.scss';
-import { useAuthMutation } from '@/query-hooks/useAuth';
 
 export default function LoginPage() {
   const { postAppleAuth } = useAuthMutation();
@@ -23,26 +25,22 @@ export default function LoginPage() {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.content}>
-        {/* 그래픽 영역으로 교체될 영역 */}
-        <div
-          style={{
-            width: '100%',
-            height: '21.875rem',
-            borderRadius: '1.625rem',
-            background: '#DFE3E9',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            color: '#6A6A6A',
-          }}
-        >
-          그래픽 영역
-        </div>
-      </div>
+      <div className={styles.content}></div>
       <div className={styles.footer}>
         <KakaoLoginButton onClick={handleKakaoLogin} />
         {(isIOS || isMacOs) && <AppleLoginButton onClick={handleAppleLogin} />}
+        <div className={styles.termSection}>
+          로그인하시면 Loopy의{' '}
+          <Link href="/term" className={styles.link}>
+            개인정보처리방침
+          </Link>
+          에 동의하는 것으로 간주합니다.
+          <br />
+          로그인 오류시 문의{' '}
+          <Link href="mailto:app.jaknaeso@gmail.com" className={styles.link}>
+            app.jaknaeso@gmail.com
+          </Link>
+        </div>
       </div>
     </div>
   );
