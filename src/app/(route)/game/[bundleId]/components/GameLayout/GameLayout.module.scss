@@ -27,10 +27,6 @@
   margin-top: 3.75rem;
 }
 
-.balanceHeader {
-  margin-top: 1rem;
-}
-
 .title {
   @include title3;
   white-space: pre-line;
@@ -38,9 +34,19 @@
 
 .content {
   flex: 1;
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
 }
 
 .footer {
-  margin: 0 0.25rem;
+  position: absolute;
+  bottom: 1.75rem;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.button {
+  width: 21.875rem;
+  z-index: 10;
 }

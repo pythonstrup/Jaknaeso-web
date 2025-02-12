@@ -5,7 +5,7 @@ import { ROUTES } from '@/constants';
 
 import surveyApis from './api.client';
 import surveyKeys from './keys';
-import type { HistoryResponse, SurveySubmissionArgs, SurveySubmissionResponse, TodaySurveyResponse } from './types';
+import type { HistoryResponse, SurveySubmissionParams, SurveySubmissionResponse, TodaySurveyResponse } from './types';
 
 const useGetSurvey = (options?: UseQueryOptions<HistoryResponse, Error>) => {
   return useQuery<HistoryResponse, Error>({
@@ -22,10 +22,10 @@ const useGetTodaySurvey = (bundleId: string, options?: UseQueryOptions<TodaySurv
     ...options,
   });
 
-const useSubmitSurvey = (options?: UseMutationOptions<null, Error, SurveySubmissionArgs>) => {
+const useSubmitSurvey = (options?: UseMutationOptions<null, Error, SurveySubmissionParams>) => {
   const router = useRouter();
-  return useMutation<null, Error, SurveySubmissionArgs>({
-    mutationFn: ({ bundleId, survey }) => surveyApis.submitSurvey(bundleId, survey),
+  return useMutation<null, Error, SurveySubmissionParams>({
+    mutationFn: ({ surveyId, survey }) => surveyApis.submitSurvey(surveyId, survey),
     onSuccess: () => {
       router.push(ROUTES.gameComplete);
     },

@@ -34,8 +34,8 @@ export type SurveySubmission = {
   comment: string;
 };
 
-export type SurveySubmissionArgs = {
-  bundleId: string;
+export type SurveySubmissionParams = {
+  surveyId: number;
   survey: SurveySubmission;
 };
 

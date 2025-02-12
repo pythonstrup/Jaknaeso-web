@@ -19,8 +19,8 @@ const getTodaySurvey = async (bundleId: string) => {
   return res.data.data;
 };
 
-const submitSurvey = async (bundleId: string, survey: SurveySubmission) => {
-  const { data } = await clientApi.post(`/api/v1/surveys/${bundleId}/submission`, survey);
+const submitSurvey = async (surveyId: number, survey: SurveySubmission) => {
+  const { data } = await clientApi.post(`/api/v1/surveys/${surveyId}/submission`, survey);
   return data;
 };
 

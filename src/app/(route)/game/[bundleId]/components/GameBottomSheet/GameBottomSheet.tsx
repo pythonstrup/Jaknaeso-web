@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useParams } from 'next/navigation';
 
 import { BottomSheet } from '@/components/BottomSheet';
 import { Button } from '@/components/Button';
@@ -11,19 +10,20 @@ import styles from './GameBottomSheet.module.scss';
 const GameBottomSheet = ({
   isOpen,
   closeSheet,
+  surveyId,
   optionId,
 }: {
   isOpen: boolean;
   closeSheet: VoidFunction;
+  surveyId: number;
   optionId: number;
 }) => {
-  const { bundleId } = useParams();
   const [content, setContent] = useState('');
   const submitSurvey = useSubmitSurvey();
 
   const saveRetrospective = () => {
     submitSurvey.mutate({
-      bundleId: bundleId as string,
+      surveyId,
       survey: {
         optionId,
         comment: content,

@@ -9,8 +9,8 @@
 
 .flipCard {
   position: relative;
-  width: 20rem;
-  height: 25rem;
+  width: 19.375rem;
+  height: 20.5rem;
   transform-style: preserve-3d;
 }
 
@@ -19,13 +19,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5rem 2.125rem 0;
+  padding: 3.125rem 3.5rem 1.875rem 3.5rem;
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   background-color: white;
   backface-visibility: hidden;
@@ -44,10 +44,20 @@
 .nextButton {
   @include flex-align-center;
   position: absolute;
-  right: 1.875rem;
+  width: 16.875rem;
+  padding: 0.875rem 0;
+  right: 1.25rem;
   bottom: 1.875rem;
   color: $neutral-500;
   font-size: 1.125rem;
   font-weight: 600;
   cursor: pointer;
+  border: 1.4px solid $neutral-400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.75rem;
+  svg {
+    margin-left: 0.25rem;
+  }
 }

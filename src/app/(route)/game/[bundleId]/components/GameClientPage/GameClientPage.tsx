@@ -31,7 +31,7 @@ export default function Game() {
   const [answer, setAnswer] = useState(0);
   const { bundleId } = useParams();
 
-  const { data = { contents: '', options: [], surveyType: 'BALANCE' }, isLoading } = useGetTodaySurvey(
+  const { data = { id: 0, contents: '', options: [], surveyType: 'BALANCE' }, isLoading } = useGetTodaySurvey(
     bundleId as string,
   );
   const surveyType = data ? (data.surveyType as SurveyType) : 'BALANCE';
@@ -45,7 +45,7 @@ export default function Game() {
       openSheet={() => setOpen(true)}
       closeSheet={() => setOpen(false)}
       className={surveyType === 'BALANCE' ? styles.container : ''}
-      surveyType={surveyType}
+      surveyId={data.id}
       answer={answer}
     >
       {surveyType === 'BALANCE' ? (
