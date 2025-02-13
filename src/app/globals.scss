@@ -51,6 +51,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Pretendard Variable';
 }
+body {
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
 
 * {
   box-sizing: border-box;

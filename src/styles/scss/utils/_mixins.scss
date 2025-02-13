@@ -62,3 +62,10 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@mixin text-wrap($max-width: 12.75rem) {
+  width: 100%;
+  max-width: $max-width;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}

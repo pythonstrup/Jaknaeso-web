@@ -8,6 +8,8 @@ import { useMemberStore } from '@/stores';
 
 import CharacterSelectLayout from '../components/CharacterSelectLayout';
 
+import { ReportAnalysisPage } from './components/Page';
+
 export default function ReportAnalysis() {
   const { data: characterData = { characters: [] } } = useGetCharacters({ memberId: useMemberStore().getMemberId() });
   const [open, setOpen] = useState(false);
@@ -32,6 +34,8 @@ export default function ReportAnalysis() {
       onButtonClick={() => setOpen(true)}
       onCloseSheet={() => setOpen(false)}
       onSelect={handleCharacter}
-    ></CharacterSelectLayout>
+    >
+      <ReportAnalysisPage />
+    </CharacterSelectLayout>
   );
 }

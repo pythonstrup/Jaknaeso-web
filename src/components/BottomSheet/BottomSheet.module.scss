@@ -16,7 +16,7 @@
 }
 
 .content {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -26,13 +26,13 @@
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
   z-index: 1000;
+  max-height: 100vh;
   &[data-state='open'] {
     @include slide-in-bottom;
   }
   &[data-state='closed'] {
     @include slide-out-bottom;
   }
-  height: 100%;
   @include flex-column;
   padding-left: 1.25rem;
   padding-right: 1.25rem;

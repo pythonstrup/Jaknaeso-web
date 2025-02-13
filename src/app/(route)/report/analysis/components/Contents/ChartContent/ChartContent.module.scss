@@ -1,0 +1,18 @@
+.container {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  @include flex-column-with-gap(1.5rem);
+}
+.title {
+  @include displayFlex(column, flex-start, flex-start, 0.25rem);
+  h5 {
+    color: $neutral-700;
+
+    @include text-wrap(12.75rem);
+  }
+}
+.chart {
+  @include flex-center;
+  padding-left: 3.6875rem;
+  padding-right: 3.6875rem;
+}
