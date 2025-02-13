@@ -1,18 +1,31 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import dayjs from 'dayjs';
 
 import { Card } from '@/components/Card';
-import styles from './page.module.scss';
-import CharacterSelectLayout from '../components/CharacterSelectLayout';
 import { useGetCharacters } from '@/query-hooks/useCharacter';
-import { useMemberStore } from '@/stores';
 import type { CharacterItem } from '@/query-hooks/useCharacter/types';
 import { useGetSubmissions } from '@/query-hooks/useSurvey';
+import { useMemberStore } from '@/stores';
+
+import CharacterSelectLayout from '../components/CharacterSelectLayout';
+
+import styles from './page.module.scss';
 
 export default function ReportQuestions() {
   const [open, setOpen] = useState(false);
+  const searchParams = useSearchParams();
+
+  const focusIndex = searchParams.get('focus') ? Number(searchParams.get('focus')) - 1 : null;
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (focusIndex !== null && cardRefs.current[focusIndex]) {
+      cardRefs.current[focusIndex]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [focusIndex]);
   const [selectedCharacter, setSelectedCharacter] = useState<CharacterItem>({ ordinalNumber: 0, bundleId: 0 });
 
   const { data: characterData = { characters: [] } } = useGetCharacters({ memberId: useMemberStore().getMemberId() });
@@ -49,12 +62,16 @@ export default function ReportQuestions() {
       <div className={styles.contentContainer}>
         {submissionData.surveyRecords.map((question, index) => (
           <Card
+            ref={(el) => {
+              cardRefs.current[index] = el;
+            }}
             key={index}
             count={index + 1}
             date={formatDate(question.submittedAt)}
             question={question.question}
             answer={question.answer}
             retrospective={question.retrospective}
+            isOpen={focusIndex === index}
             className={styles.card}
           />
         ))}

@@ -1,9 +1,9 @@
-import { BottomSheet } from '@/components/BottomSheet';
 import { CheckIcon } from '@/assets/icons';
+import { BottomSheet } from '@/components/BottomSheet';
+import type { CharacterItem } from '@/query-hooks/useCharacter/types';
+import { formatToKoreanOrder } from '@/utils';
 
 import styles from './CharacterSelectBottomSheet.module.scss';
-import { formatToKoreanOrder } from '@/utils';
-import type { CharacterItem } from '@/query-hooks/useCharacter/types';
 
 type Props = {
   open: boolean;

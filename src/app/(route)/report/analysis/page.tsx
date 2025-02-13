@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import CharacterSelectLayout from '../components/CharacterSelectLayout';
+
 import { useGetCharacters } from '@/query-hooks/useCharacter';
-import { useMemberStore } from '@/stores';
 import type { CharacterItem } from '@/query-hooks/useCharacter/types';
+import { useMemberStore } from '@/stores';
+
+import CharacterSelectLayout from '../components/CharacterSelectLayout';
 
 export default function ReportAnalysis() {
   const { data: characterData = { characters: [] } } = useGetCharacters({ memberId: useMemberStore().getMemberId() });

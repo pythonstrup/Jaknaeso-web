@@ -1,5 +1,6 @@
 import { serverApi } from '@/libs/api/api.server';
 import type { ResponseDTO } from '@/types';
+
 import type { CharacterParams, CharacterResponse } from './types';
 
 const getCharacters = async (params: CharacterParams['get']) => {

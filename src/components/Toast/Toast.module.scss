@@ -1,0 +1,73 @@
+.viewport {
+  list-style: none;
+  z-index: 100;
+  outline: none;
+}
+
+.root {
+  background: rgba(68, 73, 83, 0.95);
+  border-radius: 0.75rem;
+  z-index: 100;
+  position: absolute;
+  bottom: 4.25rem;
+  width: calc(100% - 2.5rem);
+  padding-left: 1.7188rem;
+  padding-right: 1.7188rem;
+  text-align: center;
+  height: 4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  @include flex-center;
+
+  &[data-state='open'] {
+    animation: slideIn 300ms ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: slideOut 600ms ease-in;
+  }
+
+  &[data-swipe='move'] {
+    transform: translateY(var(--radix-toast-swipe-move-y));
+  }
+
+  &[data-swipe='cancel'] {
+    transform: translateY(0);
+    transition: transform 300ms ease-out;
+  }
+
+  &[data-swipe='end'] {
+    animation: swipeOut 300ms ease-out;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%) translateY(5vh);
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    transform: translateX(-50%) translateY(9.5vh);
+  }
+}
+
+@keyframes swipeOut {
+  from {
+    transform: translateX(-50%) translateY(var(--radix-toast-swipe-end-y));
+  }
+  to {
+    transform: translateX(-50%) translateY(100%);
+  }
+}
+.title {
+  color: $white;
+  @include subTitle4;
+}

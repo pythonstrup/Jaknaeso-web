@@ -1,9 +1,10 @@
 'use client';
 
-import { ArrowLeft2Icon } from '@/assets/icons';
-
 import { useRouter } from 'next/navigation';
+
+import { ArrowLeft2Icon } from '@/assets/icons';
 import { ROUTES } from '@/constants';
+
 import styles from './page.module.scss';
 
 export default function TermPage() {

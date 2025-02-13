@@ -1,9 +1,9 @@
 import { ArrowDown2Icon } from '@/assets/icons';
 import { TextButton } from '@/components/TextButton';
+import type { CharacterItem } from '@/query-hooks/useCharacter/types';
+import { formatToKoreanOrder } from '@/utils';
 
 import styles from './CharacterSelectButton.module.scss';
-import { formatToKoreanOrder } from '@/utils';
-import type { CharacterItem } from '@/query-hooks/useCharacter/types';
 
 type Props = {
   selectedCharacter: CharacterItem;

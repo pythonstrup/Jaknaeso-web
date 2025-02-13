@@ -2,11 +2,11 @@
 
 import React from 'react';
 
+import UserSettings from '@/app/(route)/mypage/components/UserSettings';
 import { useMemberStore } from '@/stores';
 
 import ProfileCard from './components/ProfileCard';
 import UserActionFooter from './components/UserActionFooter';
-import UserSettings from '@/app/(route)/mypage/components/UserSettings';
 
 export default function MyPage() {
   const { member } = useMemberStore();

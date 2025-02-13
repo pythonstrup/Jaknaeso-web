@@ -1,11 +1,12 @@
 import type { PropsWithChildren } from 'react';
 
-import CharacterSelectButton from '../CharacterSelectButton';
+import type { CharacterItem } from '@/query-hooks/useCharacter/types';
+
 import CharacterSelectBottomSheet from '../CharacterSelectBottomSheet';
+import CharacterSelectButton from '../CharacterSelectButton';
 import CharacterTabNav from '../CharacterTabNav';
 
 import styles from './CharacterSelectLayout.module.scss';
-import type { CharacterItem } from '@/query-hooks/useCharacter/types';
 
 type Props = {
   open: boolean;

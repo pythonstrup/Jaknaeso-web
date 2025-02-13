@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { Card as CardComponent } from '@radix-ui/themes';
 import cn from 'classnames';
 import { Accordion, Separator } from 'radix-ui';
@@ -56,42 +57,39 @@ const BasicCard = ({ count, date, question, answer, retrospective }: CardProps) 
   </div>
 );
 
-export default function Card({
-  count,
-  date,
-  question,
-  answer,
-  hiddenCollapse = false,
-  isOpen = false,
-  retrospective,
-  className,
-}: CardProps) {
-  if (hiddenCollapse) {
-    return <BasicCard count={count} date={date} question={question} answer={answer} />;
-  }
+const Card = forwardRef<HTMLDivElement, CardProps>(
+  ({ count, date, question, answer, hiddenCollapse = false, isOpen = false, retrospective, className }, ref) => {
+    if (hiddenCollapse) {
+      return <BasicCard count={count} date={date} question={question} answer={answer} />;
+    }
 
-  return (
-    <div className={cn(styles.container, className)}>
-      <Accordion.Root type="single" collapsible {...(isOpen ? { defaultValue: 'item-1' } : {})}>
-        <Accordion.Item value="item-1">
-          <Accordion.Trigger className={styles.trigger}>
-            <CardComponent className={styles.wrapper}>
-              <Accordion.Header className={styles.header}>
-                <div className={styles.date}>
-                  <h4 className={styles.cardSubTitle4}>{count}회차</h4>
-                  <ArrowDownIcon width="1.5rem" height="1.5rem" className={styles.icon} />
-                </div>
-              </Accordion.Header>
-              <Accordion.Content className={styles.contents}>
-                <Chip size="sm" color="neutral" className={styles.chip}>
-                  {date}
-                </Chip>
-                <CardContents question={question} answer={answer} retrospective={retrospective} />
-              </Accordion.Content>
-            </CardComponent>
-          </Accordion.Trigger>
-        </Accordion.Item>
-      </Accordion.Root>
-    </div>
-  );
-}
+    return (
+      <div ref={ref} className={cn(styles.container, className)}>
+        <Accordion.Root type="single" collapsible {...(isOpen ? { defaultValue: 'item-1' } : {})}>
+          <Accordion.Item value="item-1">
+            <Accordion.Trigger className={styles.trigger}>
+              <CardComponent className={styles.wrapper}>
+                <Accordion.Header className={styles.header}>
+                  <div className={styles.date}>
+                    <h4 className={styles.cardSubTitle4}>{count}회차</h4>
+                    <ArrowDownIcon width="1.5rem" height="1.5rem" className={styles.icon} />
+                  </div>
+                </Accordion.Header>
+                <Accordion.Content className={styles.contents}>
+                  <Chip size="sm" color="neutral" className={styles.chip}>
+                    {date}
+                  </Chip>
+                  <CardContents question={question} answer={answer} retrospective={retrospective} />
+                </Accordion.Content>
+              </CardComponent>
+            </Accordion.Trigger>
+          </Accordion.Item>
+        </Accordion.Root>
+      </div>
+    );
+  },
+);
+
+Card.displayName = 'Card';
+
+export default Card;

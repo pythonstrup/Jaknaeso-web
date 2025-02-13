@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { ArrowRightIcon as ArrowRightIcon } from '@/assets/icons';
+import { ROUTES } from '@/constants';
 
 import styles from './UserSettings.module.scss';
-import { useRouter } from 'next/navigation';
-import { ROUTES } from '@/constants';
 
 const UserSettings = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);

@@ -9,6 +9,7 @@ import { Capsule } from '@/components/Capsule';
 import { LockBtn } from '@/components/LockBtn';
 import type { LockBtnVariant } from '@/components/LockBtn/LockBtn';
 import { ROUTES } from '@/constants';
+import { useToast } from '@/hooks';
 import { useGetSurvey } from '@/query-hooks/useSurvey';
 
 import { Drawer } from '../Drawer';
@@ -19,7 +20,7 @@ export default function HomeContent() {
   const routes = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const { data } = useGetSurvey();
-
+  const { showToast } = useToast();
   const daysArr = Array.from({ length: 15 }, (_, i) => i + 1);
 
   const getLockState = (day: number): LockBtnVariant => {
@@ -44,6 +45,12 @@ export default function HomeContent() {
     if (getLockState(day) === 'default') {
       routes.push(`${ROUTES.game}/${data?.bundleId}`);
     }
+    if (getLockState(day) === 'disabled' && day > (data?.nextSurveyIndex ?? 0)) {
+      showToast('하루에 한 회차씩 답변할 수 있어요');
+    }
+    if (getLockState(day) === 'completed') {
+      routes.push(`${ROUTES.reportQuestions}?focus=${day}`);
+    }
   };
 
   return (
@@ -54,7 +61,7 @@ export default function HomeContent() {
             <Capsule className={styles.capsule}>
               <label>캐릭터 완성까지</label>
               <LineIcon color="#A9AEBA" />
-              <label>{`${15 - data.surveyHistoryDetails.length} 개`}</label>
+              <label>{`${15 - data.surveyHistoryDetails.length}회차`}</label>
             </Capsule>
           </div>
           <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>

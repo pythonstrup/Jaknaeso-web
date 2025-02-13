@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { AppleScript } from '@/components/appleScript';
 import { KakaoScript } from '@/components/KakaoScript';
+import { Toast } from '@/components/Toast';
 
 import ReactQueryProviders from '../providers/ReactQueryProvider';
 
@@ -43,7 +44,10 @@ export default function RootLayout({
       <body>
         <ReactQueryProviders>
           <div className="container">
-            <main className="layout">{children}</main>
+            <main className="layout">
+              {children}
+              <Toast />
+            </main>
           </div>
           <ReactQueryDevtools />
         </ReactQueryProviders>
