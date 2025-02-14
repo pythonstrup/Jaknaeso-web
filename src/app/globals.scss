@@ -133,3 +133,9 @@ a {
 .caption {
   @include caption;
 }
+
+.errorContainer {
+  height: 100vh;
+  width: 100%;
+  @include flex-center-column;
+}

@@ -1,0 +1,29 @@
+.container {
+  @include flex-center-column;
+  gap: 1.5rem;
+}
+
+.content {
+  @include flex-column-with-gap(0.5rem);
+  align-items: center;
+  p {
+    color: $neutral-600;
+    text-align: center;
+    white-space: pre-line;
+  }
+}
+
+.buttons {
+  @include flex-center-column;
+  gap: 0.625rem;
+}
+
+.reset {
+  background-color: $neutral-400;
+  color: $white;
+}
+
+.redirect {
+  background-color: $neutral-700;
+  color: $white;
+}
