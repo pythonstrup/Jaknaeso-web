@@ -44,6 +44,7 @@ export type SurveySubmissionResponse = {
 };
 
 export type CompletedSurveySubmission = {
+  submissionId: number;
   question: string;
   answer: string;
   retrospective: string;

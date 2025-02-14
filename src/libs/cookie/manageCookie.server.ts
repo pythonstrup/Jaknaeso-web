@@ -1,11 +1,12 @@
 import { cookies } from 'next/headers';
 
+import type { TCookieKey } from './cookieKey';
 import { CookieKey } from './cookieKey';
 
 /**
  * 쿠키에서 아이템을 가져옴
  */
-const getItemOrNull = async <T>(key: CookieKey): Promise<T | null> => {
+const getItemOrNull = async <T>(key: TCookieKey): Promise<T | null> => {
   const cookieStore = cookies();
   try {
     const data = (await cookieStore).get(key)?.value;
@@ -18,7 +19,7 @@ const getItemOrNull = async <T>(key: CookieKey): Promise<T | null> => {
 /**
  * 쿠키에 아이템을 저장
  */
-const setItem = async <T>(key: CookieKey, items: T) => {
+const setItem = async <T>(key: TCookieKey, items: T) => {
   const cookieStore = await cookies();
   try {
     cookieStore.set(key, JSON.stringify(items));
@@ -60,4 +61,32 @@ export const getAccessToken = async () => {
 export const setTokens = (accessToken: string, refreshToken: string) => {
   setAccessToken(accessToken);
   setRefreshToken(refreshToken);
+};
+
+/**
+ * memberId token 값을 가져옴
+ */
+export const getMemberIdToken = async () => {
+  return await getItemOrNull<string>(CookieKey.memberId);
+};
+
+/**
+ * memberId token 값을 갱신
+ */
+export const setMemberIdToken = (memberId: string) => {
+  setItem<string>(CookieKey.memberId, memberId);
+};
+
+/**
+ * bundleId token 값을 가져옴
+ */
+export const getBundleIdToken = async () => {
+  return await getItemOrNull<string>(CookieKey.bundleId);
+};
+
+/**
+ * bundleId token 값을 갱신
+ */
+export const setBundleIdToken = (bundleId: string) => {
+  setItem<string>(CookieKey.bundleId, bundleId);
 };
