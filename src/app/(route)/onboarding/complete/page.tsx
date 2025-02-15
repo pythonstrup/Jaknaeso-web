@@ -16,11 +16,11 @@ export default function GameComplete() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h3 className="title2">
-          오늘의 질문
+          내 가치관 캐릭터가
           <br />
-          답변을 완료했어요!
+          완성됐어요!
         </h3>
-        <p className={styles.subTitle}>내일도 답변을 완료해 내 캐릭터를 완성해 보세요</p>
+        <p className={styles.subTitle}>홈 화면에서 내 캐릭터를 확인해보세요.</p>
       </div>
       <div className={styles.content}>
         <LottieAnimation type="celebrate" width="300px" height="300px" />

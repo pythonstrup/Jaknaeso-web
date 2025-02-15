@@ -2,10 +2,18 @@ import { useRouter } from 'next/navigation';
 import { useMutation, type UseMutationOptions, useQuery, type UseQueryOptions } from '@tanstack/react-query';
 
 import { ROUTES } from '@/constants';
+import { useToast } from '@/hooks';
 
 import surveyApis from './api.client';
 import surveyKeys from './keys';
-import type { HistoryResponse, SurveySubmissionParams, SurveySubmissionResponse, TodaySurveyResponse } from './types';
+import type {
+  HistoryResponse,
+  OnboardingResponse,
+  OnboardingSubmissionParams,
+  SurveySubmissionParams,
+  SurveySubmissionResponse,
+  TodaySurveyResponse,
+} from './types';
 
 const useGetSurvey = (options?: UseQueryOptions<HistoryResponse, Error>) => {
   return useQuery<HistoryResponse, Error>({
@@ -22,16 +30,39 @@ const useGetTodaySurvey = (bundleId: string, options?: UseQueryOptions<TodaySurv
     ...options,
   });
 
+const useGetOnboarding = (options?: UseQueryOptions<OnboardingResponse, Error>) =>
+  useQuery<OnboardingResponse, Error>({
+    queryFn: () => surveyApis.getOnboarding(),
+    queryKey: surveyKeys.list(['onboarding']),
+    ...options,
+  });
+
 const useSubmitSurvey = (options?: UseMutationOptions<null, Error, SurveySubmissionParams>) => {
   const router = useRouter();
+  const { showToast } = useToast();
+
   return useMutation<null, Error, SurveySubmissionParams>({
     mutationFn: ({ surveyId, survey }) => surveyApis.submitSurvey(surveyId, survey),
     onSuccess: () => {
       router.push(ROUTES.gameComplete);
     },
     onError: () => {
-      // 토스트 컴포넌트로 교체 예정
-      console.log('게임 결과 제출 실패');
+      showToast('오늘의 가치관 테스트 제출에 실패했습니다. ');
+    },
+    ...options,
+  });
+};
+
+const useSubmitOnboarding = (options?: UseMutationOptions<null, Error, OnboardingSubmissionParams>) => {
+  const router = useRouter();
+  const { showToast } = useToast();
+  return useMutation<null, Error, OnboardingSubmissionParams>({
+    mutationFn: (onboarding) => surveyApis.submitOnboarding(onboarding),
+    onSuccess: () => {
+      router.push('/onboarding/complete');
+    },
+    onError: () => {
+      showToast('가치관 테스트 제출에 실패했습니다. 다시 시도해주세요.');
     },
     ...options,
   });
@@ -49,4 +80,4 @@ const useGetSubmissions = (
   });
 };
 
-export { useGetSubmissions, useGetSurvey, useGetTodaySurvey, useSubmitSurvey };
+export { useGetOnboarding, useGetSubmissions, useGetSurvey, useGetTodaySurvey, useSubmitOnboarding, useSubmitSurvey };

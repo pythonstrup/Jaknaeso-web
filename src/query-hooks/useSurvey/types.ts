@@ -1,4 +1,8 @@
-export type SurveyType = 'MULTIPLE_CHOICE' | 'BALANCE';
+export type SurveyType = 'MULTIPLE_CHOICE' | 'BALANCE' | 'ONBOARDING';
+export type OnboradingResultType = {
+  surveyId: number;
+  optionId: number;
+};
 
 export type SurveyParams = {
   get: {
@@ -29,9 +33,17 @@ export type TodaySurveyResponse = {
   options: SurveyOption[];
 };
 
+export type OnboardingResponse = {
+  surveyResponses: TodaySurveyResponse[];
+};
+
 export type SurveySubmission = {
   optionId: number;
   comment: string;
+};
+
+export type OnboardingSubmissionParams = {
+  submissionsInfo: OnboradingResultType[];
 };
 
 export type SurveySubmissionParams = {

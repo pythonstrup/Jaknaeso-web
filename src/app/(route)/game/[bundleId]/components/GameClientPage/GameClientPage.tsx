@@ -26,7 +26,7 @@ const MultipleChoice = ({
   </div>
 );
 
-export default function Game() {
+export default function GameClientPage() {
   const [open, setOpen] = useState(false);
   const [answer, setAnswer] = useState(0);
   const { bundleId } = useParams();
