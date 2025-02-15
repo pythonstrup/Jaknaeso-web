@@ -8,6 +8,7 @@ function encodeBase64UrlSafe(text: string) {
 const CookieKey = {
   accessToken: encodeBase64UrlSafe('accessToken'),
   refreshToken: encodeBase64UrlSafe('refreshToken'),
+  isCompletedOnboarding: encodeBase64UrlSafe('isCompletedOnboarding'),
   memberId: encodeBase64UrlSafe('memberId'),
   bundleId: encodeBase64UrlSafe('bundleId'),
 } as const;

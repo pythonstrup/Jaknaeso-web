@@ -93,6 +93,20 @@ export const setBundleIdToken = (bundleId: string) => {
 };
 
 /**
+ * isCompletedOnboarding 값을 가져옴
+ */
+export const getIsCompletedOnboarding = async () => {
+  return !!getItemOrNull<boolean>(CookieKey.isCompletedOnboarding);
+};
+
+/**
+ * isCompletedOnboarding 값을 갱신
+ */
+export const setIsCompletedOnboarding = (isCompletedOnboarding: boolean) => {
+  setItem<boolean>(CookieKey.isCompletedOnboarding, isCompletedOnboarding);
+};
+
+/**
  * token 값 삭제
  */
 export const clearTokens = () => {
@@ -100,4 +114,5 @@ export const clearTokens = () => {
   deleteCookie(CookieKey.refreshToken);
   deleteCookie(CookieKey.memberId);
   deleteCookie(CookieKey.bundleId);
+  deleteCookie(CookieKey.isCompletedOnboarding);
 };

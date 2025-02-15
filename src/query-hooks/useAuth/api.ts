@@ -24,10 +24,10 @@ const reissue = async (token: string) => {
       },
     },
   );
-  setTokens(data.data.accessToken, data.data.refreshToken);
+  setTokens(data.data.tokenInfo.accessToken, data.data.tokenInfo.refreshToken);
   console.log('토큰 재발급 실행');
 
-  return data.data.accessToken;
+  return data.data.tokenInfo.accessToken;
 };
 
 const authApis = { postKakao, postApple, reissue };

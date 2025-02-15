@@ -9,4 +9,8 @@ export type AuthParams = {
   };
 };
 
-export type AuthResponse = { memberId: number; accessToken: string; refreshToken: string };
+export type TokenInfo = {
+  accessToken: string;
+  refreshToken: string;
+};
+export type AuthResponse = { memberId: number; isCompletedOnboarding: boolean; tokenInfo: TokenInfo };

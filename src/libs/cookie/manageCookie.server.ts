@@ -90,3 +90,18 @@ export const getBundleIdToken = async () => {
 export const setBundleIdToken = (bundleId: string) => {
   setItem<string>(CookieKey.bundleId, bundleId);
 };
+
+/**
+ * isCompletedOnboarding 값을 가져옴
+ */
+export const getIsCompletedOnboarding = async () => {
+  const value = await getItemOrNull<string>(CookieKey.isCompletedOnboarding);
+  return JSON.parse(value!) as boolean;
+};
+
+/**
+ * isCompletedOnboarding 값을 갱신
+ */
+export const setIsCompletedOnboarding = (isCompletedOnboarding: boolean) => {
+  setItem<boolean>(CookieKey.isCompletedOnboarding, Boolean(isCompletedOnboarding));
+};
