@@ -1,10 +1,9 @@
-import surveyKeys from '@/query-hooks/useSurvey/keys';
-import surveyServerApis from '@/query-hooks/useSurvey/api.server';
-
 import { PrefetchHydration } from '@/components/ReactQuery';
+import { getBundleIdToken, getMemberIdToken } from '@/libs/cookie/manageCookie.server';
+import surveyServerApis from '@/query-hooks/useSurvey/api.server';
+import surveyKeys from '@/query-hooks/useSurvey/keys';
 
 import ReportQuestionsPage from './components/Page';
-import { getBundleIdToken, getMemberIdToken } from '@/libs/cookie/manageCookie.server';
 
 export default async function ReportQuestions() {
   const memberId = getMemberIdToken();

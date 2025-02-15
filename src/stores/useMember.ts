@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+
 import { setMemberIdToken } from '@/libs/cookie/manageCookie.client';
 
 interface MemberState {

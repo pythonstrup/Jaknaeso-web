@@ -1,8 +1,7 @@
-import characterKeys from '@/query-hooks/useCharacter/keys';
-import characterServerApis from '@/query-hooks/useCharacter/api.server';
-
 import { PrefetchHydration } from '@/components/ReactQuery';
 import { getMemberIdToken } from '@/libs/cookie/manageCookie.server';
+import characterServerApis from '@/query-hooks/useCharacter/api.server';
+import characterKeys from '@/query-hooks/useCharacter/keys';
 
 import ReportAnalysisPage from './components/Page/Page';
 

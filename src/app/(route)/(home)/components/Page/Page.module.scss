@@ -5,28 +5,65 @@
   background-color: #f8f8fa;
 }
 
+.layer {
+  background: linear-gradient(180deg, #f8f8fa 40.61%, rgba(248, 248, 250, 0) 100%);
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  height: 19.5625rem;
+}
+
 .container {
-  padding-top: 3.125rem;
+  padding-top: 2.125rem;
 }
 
 .content {
   padding-left: 1.25rem;
+  z-index: 3;
   @include displayFlex(column, flex-start, flex-start, 0.625rem);
-  h1 {
+  .chip {
+    z-index: 3;
   }
+  h1 {
+    z-index: 3;
+    color: #000;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 130%;
+    white-space: pre-line;
+  }
+}
+
+.character {
+  width: 100%;
+  @include flex-center;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  height: calc(100% - 29.375rem);
 }
 
 .wrapper {
   width: 100%;
   position: fixed;
   left: 50%;
-  bottom: 19.875rem;
+  bottom: 17.5rem;
   transform: translate(-50%, -50%);
   @include flex-center;
+  z-index: 3;
 }
 .capsule {
   @include displayFlex(row, center, center, 0.625rem);
-
+  padding: 0rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
   label:nth-child(1) {
     @include subTitle1;
     color: $neutral-600;
@@ -44,5 +81,8 @@
   .lock {
     @include flex-center;
     margin-bottom: 1.75rem;
+    &:nth-last-child(-n + 5) {
+      margin-bottom: 1.875rem;
+    }
   }
 }

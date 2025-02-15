@@ -2,24 +2,25 @@
 
 import { type PropsWithChildren } from 'react';
 import type { PanInfo } from 'framer-motion';
-import { motion } from 'framer-motion';
+import { motion, useDragControls } from 'framer-motion';
 
 import styles from './Drawer.module.scss';
 import DrawerHandle from './Handle';
 
-export const BOTTOM_SHEET_MAX_HEIGHT = 487;
-export const BOTTOM_SHEET_MIN_HEIGHT = 261;
+export const BOTTOM_SHEET_MAX_HEIGHT = 451;
+export const BOTTOM_SHEET_MIN_HEIGHT = 225;
 
 interface DrawerProps {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
 }
-export default function DrawerMain({ isOpen, setIsOpen, children }: PropsWithChildren<DrawerProps>) {
+export default function Drawer({ isOpen, setIsOpen, children }: PropsWithChildren<DrawerProps>) {
   const animateState = isOpen ? 'visible' : 'hidden';
+  const dragControls = useDragControls();
 
   const onDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const offsetThreshold = 150;
-    const deltaThreshold = 5;
+    const offsetThreshold = 10;
+    const deltaThreshold = 1;
     const isOverOffsetThreshold = Math.abs(info.offset.y) > offsetThreshold;
     const isOverDeltaThreshold = Math.abs(info.delta.y) > deltaThreshold;
     const isOverThreshold = isOverOffsetThreshold || isOverDeltaThreshold;
@@ -27,24 +28,27 @@ export default function DrawerMain({ isOpen, setIsOpen, children }: PropsWithChi
     const newIsOpened = info.offset.y >= 0;
     setIsOpen(newIsOpened);
   };
-
   return (
     <motion.div
       drag="y"
+      dragControls={dragControls}
       onDragEnd={onDragEnd}
       animate={animateState}
       variants={{
-        visible: { bottom: '4.25rem', height: 261 },
-        hidden: { bottom: '4.25rem', height: 500 },
+        visible: { bottom: '4.25rem', height: BOTTOM_SHEET_MIN_HEIGHT },
+        hidden: { bottom: '4.25rem', height: BOTTOM_SHEET_MAX_HEIGHT },
       }}
-      dragMomentum={false}
+      dragListener={false}
+      dragMomentum={true}
       dragConstraints={{ top: 0, bottom: 0 }}
-      dragElastic={0.01}
-      transition={{ type: 'tween', duration: 0.3 }}
+      dragElastic={0.2}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className={styles.container}
     >
       <div className={styles.layout}>
-        <DrawerHandle isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+        <motion.div onPointerDown={(e) => dragControls.start(e)}>
+          <DrawerHandle isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+        </motion.div>
         {children}
       </div>
     </motion.div>

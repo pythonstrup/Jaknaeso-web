@@ -1,0 +1,13 @@
+/**
+ * @description 캐릭터 타입 enum
+ */
+export enum CHARACTER_TYPE {
+  SUCCESS = 'SUCCESS',
+  ADVENTURE = 'ADVENTURE',
+  SELF_DIRECTION = 'SELF_DIRECTION',
+  UNIVERSALISM = 'UNIVERSALISM',
+  BENEVOLENCE = 'BENEVOLENCE',
+  SECURITY = 'SECURITY',
+  STABILITY = 'STABILITY',
+}
+export type CharacterKeys = keyof typeof CHARACTER_TYPE;

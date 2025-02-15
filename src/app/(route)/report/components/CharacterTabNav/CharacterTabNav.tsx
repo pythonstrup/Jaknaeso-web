@@ -1,6 +1,7 @@
+import { useRouter } from 'next/navigation';
+
 import { TabNav } from '@/components/TabNav';
 import { ROUTES } from '@/constants';
-import { useRouter } from 'next/navigation';
 
 const TABS = [
   {

@@ -1,11 +1,12 @@
 'use client';
 
-import { useGetCharacters } from '@/query-hooks/useCharacter';
-import { useMemberStore } from '@/stores';
 import { useState } from 'react';
-import type { CharacterItem } from '@/query-hooks/useCharacter/types';
-import { Diver } from '@/components/Diver';
+
 import CharacterSelectLayout from '@/app/(route)/report/components/CharacterSelectLayout';
+import { Diver } from '@/components/Diver';
+import { useGetCharacters } from '@/query-hooks/useCharacter';
+import type { CharacterItem } from '@/query-hooks/useCharacter/types';
+import { useMemberStore } from '@/stores';
 
 import { CharacterContent } from '../Contents/CharacterContent';
 import { ChartContent } from '../Contents/ChartContent';

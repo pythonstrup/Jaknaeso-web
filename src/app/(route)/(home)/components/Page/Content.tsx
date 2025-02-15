@@ -25,7 +25,7 @@ export default function HomeContent() {
 
   const getLockState = (day: number): LockBtnVariant => {
     if (data) {
-      const isSolved = data.surveyHistoryDetails.map((value) => value.submissionId).includes(day);
+      const isSolved = data.surveyHistoryDetails.map((value) => value.index).includes(day);
       const curDay = data.nextSurveyIndex;
       if (day > curDay) {
         return 'disabled';
@@ -94,7 +94,7 @@ export default function HomeContent() {
             </Drawer.Content>
             <Drawer.Footer>
               <Button
-                //style={{ height: '58px' }}
+                style={{ height: '3.625rem' }}
                 disabled={data.isCompleted}
                 onClick={() => onClickBtn(data?.nextSurveyIndex)}
               >

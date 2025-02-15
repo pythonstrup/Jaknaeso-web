@@ -4,15 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import dayjs from 'dayjs';
 
-import type { CharacterItem } from '@/query-hooks/useCharacter/types';
-import { useGetCharacters } from '@/query-hooks/useCharacter';
-import { useMemberStore } from '@/stores';
-import { useGetSubmissions } from '@/query-hooks/useSurvey';
 import CharacterSelectLayout from '@/app/(route)/report/components/CharacterSelectLayout';
 import { Card } from '@/components/Card';
+import { useGetCharacters } from '@/query-hooks/useCharacter';
+import type { CharacterItem } from '@/query-hooks/useCharacter/types';
+import { useGetSubmissions } from '@/query-hooks/useSurvey';
+import { useMemberStore } from '@/stores';
+import { useCharacterStore } from '@/stores/useCharacter';
 
 import styles from './Page.module.scss';
-import { useCharacterStore } from '@/stores/useCharacter';
 
 export default function ReportQuestionsPage() {
   const [open, setOpen] = useState(false);

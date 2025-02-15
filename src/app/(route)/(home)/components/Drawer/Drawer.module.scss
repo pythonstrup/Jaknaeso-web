@@ -9,10 +9,10 @@
 
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+  z-index: 100;
 }
 
 .handle {
-  padding-top: 0.5rem;
   width: 100%;
   @include flex-center;
   svg {
@@ -30,6 +30,6 @@
   }
   .footer {
     width: 100%;
-    margin-bottom: 28px;
+    margin-bottom: 0.625rem;
   }
 }

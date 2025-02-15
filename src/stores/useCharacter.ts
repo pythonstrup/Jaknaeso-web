@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+
 import { setBundleIdToken } from '@/libs/cookie/manageCookie.client';
 
 interface CharacterState {
