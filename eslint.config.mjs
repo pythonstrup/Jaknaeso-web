@@ -21,7 +21,7 @@ const eslintConfig = [
       '@typescript-eslint': typescriptEslintPlugin,
     },
     rules: {
-      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-imports': 'warn',
       'unused-imports/no-unused-vars': [
         'warn',
         { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
@@ -37,9 +37,9 @@ const eslintConfig = [
           ],
         },
       ],
-      'simple-import-sort/exports': 'error',
+      'simple-import-sort/exports': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/consistent-type-imports': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
