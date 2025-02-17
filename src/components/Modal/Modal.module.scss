@@ -1,0 +1,40 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 32rem;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  &[data-state='open'] {
+    @include fade-in;
+  }
+  &[data-state='closed'] {
+    @include fade-out;
+  }
+}
+
+.content {
+  background-color: white;
+  border-radius: 1.25rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 21.875rem;
+  padding: 2.25rem 2rem;
+  text-align: center;
+}
+
+.title {
+  @include title4;
+  margin-bottom: 1rem;
+}
+
+.description {
+  @include subTitle4;
+  margin-bottom: 1.5rem;
+  color: $neutral-700;
+  white-space: pre-line;
+}

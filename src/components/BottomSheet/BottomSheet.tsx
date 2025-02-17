@@ -28,8 +28,6 @@ export default function BottomSheetMain({
 }: PropsWithChildren<BottomSheetProps>) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={closeSheet}>
-      {/* <Dialog.Trigger asChild>
-      </Dialog.Trigger> */}
       <Dialog.Portal>
         <Dialog.Overlay className={style.overlay} />
         <Dialog.Content

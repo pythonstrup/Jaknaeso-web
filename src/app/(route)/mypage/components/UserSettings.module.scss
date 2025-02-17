@@ -39,7 +39,7 @@
   position: relative;
   border: none;
 
-  &[data-state="checked"] {
+  &[data-state='checked'] {
     background-color: #007aff;
   }
 }
@@ -53,7 +53,7 @@
   transition: transform 100ms;
   transform: translateX(0.375rem);
   will-change: transform;
-  &[data-state="checked"] {
+  &[data-state='checked'] {
     transform: translateX(1.625rem);
   }
 }
