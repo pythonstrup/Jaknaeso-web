@@ -1,0 +1,23 @@
+.container {
+  min-height: 100vh;
+}
+.swiper {
+  margin-top: 3.125rem;
+  height: 28.125rem;
+}
+.slideContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 4.5rem;
+  right: 0;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  width: 100%;
+  z-index: 10;
+  padding: 0 1.125rem;
+}

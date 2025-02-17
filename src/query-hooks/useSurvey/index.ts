@@ -59,7 +59,7 @@ const useSubmitOnboarding = (options?: UseMutationOptions<null, Error, Onboardin
   return useMutation<null, Error, OnboardingSubmissionParams>({
     mutationFn: (onboarding) => surveyApis.submitOnboarding(onboarding),
     onSuccess: () => {
-      router.push('/onboarding/complete');
+      router.push(ROUTES.onboardingGameComplete);
     },
     onError: () => {
       showToast('가치관 테스트 제출에 실패했습니다. 다시 시도해주세요.');

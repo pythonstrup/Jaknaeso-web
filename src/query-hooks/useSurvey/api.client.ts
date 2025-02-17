@@ -23,6 +23,7 @@ const getTodaySurvey = async (bundleId: string) => {
 
 const getOnboarding = async () => {
   const res = await clientApi.get<ResponseDTO<OnboardingResponse>>(`/api/v1/surveys/onboarding`);
+  console.log(res);
   return res.data.data;
 };
 

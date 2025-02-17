@@ -3,6 +3,10 @@ export type OnboradingResultType = {
   surveyId: number;
   optionId: number;
 };
+export type AnswerType = {
+  surveyId: number;
+  optionId: number;
+};
 
 export type SurveyParams = {
   get: {

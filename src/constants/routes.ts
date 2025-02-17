@@ -7,10 +7,12 @@ export const ROUTES = {
   reportAnalysis: '/report/analysis',
   reportQuestions: '/report/questions',
   mypage: '/mypage',
+  onboarding: '/onboarding',
+  onboardingGame: '/onboarding/game',
+  onboardingGameComplete: '/onboarding/game/complete',
   game: '/game',
   gameComplete: '/game/complete',
   term: '/term',
-  onboarding: '/onboarding',
 } as const;
 
 // TODO : 추후에 슬라이더/이중택일 쿼리 적용

@@ -31,12 +31,8 @@ export default function GameClientPage() {
   const [answer, setAnswer] = useState(0);
   const { bundleId } = useParams();
 
-  const { data = { id: 0, contents: '', options: [], surveyType: 'BALANCE' }, isLoading } = useGetTodaySurvey(
-    bundleId as string,
-  );
+  const { data = { id: 0, contents: '', options: [], surveyType: 'BALANCE' } } = useGetTodaySurvey(bundleId as string);
   const surveyType = data ? (data.surveyType as SurveyType) : 'BALANCE';
-
-  if (isLoading) return <div>Loading...</div>;
 
   return (
     <GamePageLayout

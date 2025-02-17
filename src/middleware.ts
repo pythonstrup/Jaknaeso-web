@@ -24,7 +24,6 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     '/',
-    '/onboarding',
     '/mypage',
     '/report/analysis',
     '/report/questions',
