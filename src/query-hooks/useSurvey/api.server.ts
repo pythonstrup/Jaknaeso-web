@@ -20,7 +20,7 @@ const getHistory = async () => {
 };
 
 const getTodaySurvey: QueryFunction<TodaySurveyResponse> = async ({ queryKey }) => {
-  const [bundleId] = queryKey as [string];
+  const bundleId = queryKey?.[2];
   const res = await serverApi.get<ResponseDTO<TodaySurveyResponse>>(`/api/v1/surveys/${bundleId}`);
   return res.data.data;
 };
