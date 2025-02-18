@@ -81,7 +81,7 @@ export const setMemberIdToken = (memberId: string) => {
  * bundleId token 값을 가져옴
  */
 export const getBundleIdToken = async () => {
-  return await getItemOrNull<string>(CookieKey.bundleId);
+  return await getItemOrNull<number>(CookieKey.bundleId);
 };
 
 /**
@@ -104,4 +104,18 @@ export const getIsCompletedOnboarding = async () => {
  */
 export const setIsCompletedOnboarding = (isCompletedOnboarding: boolean) => {
   setItem<boolean>(CookieKey.isCompletedOnboarding, Boolean(isCompletedOnboarding));
+};
+
+/**
+ * bundleId token 값을 가져옴
+ */
+export const getCharacterId = async () => {
+  return await getItemOrNull<number>(CookieKey.characterId);
+};
+
+/**
+ * bundleId token 값을 갱신
+ */
+export const setCharacterId = (characterId: string) => {
+  setItem<string>(CookieKey.characterId, characterId);
 };

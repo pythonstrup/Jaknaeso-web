@@ -1,6 +1,7 @@
 import type { QueryFunction } from '@tanstack/react-query';
 
 import { serverApi } from '@/libs/api/api.server';
+import { getMemberIdToken, setBundleIdToken } from '@/libs/cookie/manageCookie.server';
 import type { ResponseDTO } from '@/types';
 
 import type {
@@ -12,8 +13,10 @@ import type {
 } from './types';
 
 const getHistory = async () => {
-  const res = await serverApi.get<ResponseDTO<HistoryResponse>>(`/api/v1/surveys/history`);
-  return res.data.data;
+  const { data } = await serverApi.get<ResponseDTO<HistoryResponse>>(`/api/v1/surveys/history`);
+
+  setBundleIdToken(String(data.data.bundleId));
+  return data.data;
 };
 
 const getTodaySurvey: QueryFunction<TodaySurveyResponse> = async ({ queryKey }) => {
@@ -27,12 +30,14 @@ const getOnboarding: QueryFunction<OnboardingResponse> = async () => {
   return res.data.data;
 };
 
-const getSubmissions = async (memberId: number, params: SurveyParams['get']) => {
-  const res = await serverApi.get<ResponseDTO<SurveySubmissionResponse>>(
+const getSubmissions = async (params: SurveyParams['get']) => {
+  const memberId = await getMemberIdToken();
+  const { data } = await serverApi.get<ResponseDTO<SurveySubmissionResponse>>(
     `/api/v1/surveys/members/${memberId}/submissions`,
     { params },
   );
-  return res.data.data;
+
+  return data.data;
 };
 
 const surveyServerApis = { getHistory, getTodaySurvey, getOnboarding, getSubmissions };

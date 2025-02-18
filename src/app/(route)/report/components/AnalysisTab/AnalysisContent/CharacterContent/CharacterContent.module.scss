@@ -1,0 +1,19 @@
+.container {
+  padding-left: 2.8125rem;
+  padding-right: 2.8125rem;
+  @include flex-center-column;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  @include displayFlex(column, center, center, 0.75rem);
+  margin-top: 1rem;
+  h5 {
+    @include subTitle4;
+    color: $neutral-700;
+    margin: 0 auto;
+    text-align: center;
+    white-space: pre-line;
+  }
+}

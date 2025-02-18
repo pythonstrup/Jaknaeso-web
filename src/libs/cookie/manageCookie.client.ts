@@ -107,6 +107,20 @@ export const setIsCompletedOnboarding = (isCompletedOnboarding: boolean) => {
 };
 
 /**
+ * characterId 값을 가져옴
+ */
+export const getCharacterId = async () => {
+  return getItemOrNull<string>(CookieKey.characterId);
+};
+
+/**
+ * characterId 값을 갱신
+ */
+export const setCharacterId = (characterId: string) => {
+  setItem<string>(CookieKey.characterId, characterId);
+};
+
+/**
  * token 값 삭제
  */
 export const clearTokens = () => {

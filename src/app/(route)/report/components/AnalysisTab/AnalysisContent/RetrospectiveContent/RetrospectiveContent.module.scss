@@ -1,0 +1,19 @@
+.container {
+  padding-left: 1.1875rem;
+  padding-right: 1.1875rem;
+  padding-bottom: 1.5rem;
+  @include flex-column-with-gap(1.5rem);
+}
+.title {
+  @include displayFlex(row, flex-start, center, 0.4375rem);
+}
+
+.contentContainer {
+  @include flex-column;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.card {
+  margin: 0.5rem;
+}

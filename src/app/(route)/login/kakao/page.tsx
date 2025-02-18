@@ -3,9 +3,11 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
+import { LottieAnimation } from '@/components/LottieAnimation';
 import { redirectUri } from '@/libs';
 import { useAuthMutation } from '@/query-hooks/useAuth';
 
+import styles from './page.module.scss';
 export default function LoginKakaoPage() {
   const searchParams = useSearchParams();
   const { postKakaoAuth } = useAuthMutation();
@@ -16,5 +18,9 @@ export default function LoginKakaoPage() {
     }
   }, [searchParams]);
 
-  return <>kakao page loading...</>;
+  return (
+    <div className={styles.container}>
+      <LottieAnimation type="loading" width="200px" height="200px" />
+    </div>
+  );
 }

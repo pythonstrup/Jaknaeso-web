@@ -68,14 +68,10 @@ const useSubmitOnboarding = (options?: UseMutationOptions<null, Error, Onboardin
   });
 };
 
-const useGetSubmissions = (
-  memberId: number,
-  bundleId: string,
-  options?: UseQueryOptions<SurveySubmissionResponse, Error>,
-) => {
+const useGetSubmissions = (bundleId: string, options?: UseQueryOptions<SurveySubmissionResponse, Error>) => {
   return useQuery<SurveySubmissionResponse, Error>({
-    queryKey: surveyKeys.list([bundleId]),
-    queryFn: () => surveyApis.getSubmissions(memberId, { bundleId: Number(bundleId) }),
+    queryKey: surveyKeys.list(['retrospective', bundleId]),
+    queryFn: () => surveyApis.getSubmissions({ bundleId: Number(bundleId) }),
     ...options,
   });
 };

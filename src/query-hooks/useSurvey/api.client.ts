@@ -1,4 +1,5 @@
 import { clientApi } from '@/libs/api/api.client';
+import { getMemberIdToken, setBundleIdToken } from '@/libs/cookie/manageCookie.client';
 import type { ResponseDTO } from '@/types';
 
 import type {
@@ -12,8 +13,9 @@ import type {
 } from './types';
 
 const getHistory = async () => {
-  const res = await clientApi.get<ResponseDTO<HistoryResponse>>('/api/v1/surveys/history');
-  return res.data.data;
+  const { data } = await clientApi.get<ResponseDTO<HistoryResponse>>('/api/v1/surveys/history');
+  setBundleIdToken(String(data.data.bundleId));
+  return data.data;
 };
 
 const getTodaySurvey = async (bundleId: string) => {
@@ -37,12 +39,13 @@ const submitOnboarding = async (onboarding: OnboardingSubmissionParams) => {
   return data;
 };
 
-const getSubmissions = async (memberId: number, params: SurveyParams['get']) => {
-  const res = await clientApi.get<ResponseDTO<SurveySubmissionResponse>>(
+const getSubmissions = async (params: SurveyParams['get']) => {
+  const memberId = await getMemberIdToken();
+  const { data } = await clientApi.get<ResponseDTO<SurveySubmissionResponse>>(
     `/api/v1/surveys/members/${memberId}/submissions`,
     { params },
   );
-  return res.data.data;
+  return data.data;
 };
 
 const surveyApis = { getHistory, getTodaySurvey, getOnboarding, submitSurvey, submitOnboarding, getSubmissions };

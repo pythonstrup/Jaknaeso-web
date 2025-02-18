@@ -11,6 +11,7 @@ const CookieKey = {
   isCompletedOnboarding: encodeBase64UrlSafe('isCompletedOnboarding'),
   memberId: encodeBase64UrlSafe('memberId'),
   bundleId: encodeBase64UrlSafe('bundleId'),
+  characterId: encodeBase64UrlSafe('characterId'),
 } as const;
 
 export { CookieKey };

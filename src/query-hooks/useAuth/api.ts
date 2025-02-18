@@ -2,7 +2,7 @@ import { withoutTokenApi } from '@/libs/api/api';
 import { setTokens } from '@/libs/cookie/manageCookie.client';
 import type { ResponseDTO } from '@/types';
 
-import type { AuthParams, AuthResponse } from './types';
+import type { AuthParams, AuthReissueResponse, AuthResponse } from './types';
 
 const postKakao = async (body: AuthParams['postKakao']) => {
   const res = await withoutTokenApi.post<ResponseDTO<AuthResponse>>(`/api/v1/auth/kakao-login`, body);
@@ -15,7 +15,7 @@ const postApple = async (body: AuthParams['postApple']) => {
 };
 
 const reissue = async (token: string) => {
-  const { data } = await withoutTokenApi.post<ResponseDTO<AuthResponse>>(
+  const { data } = await withoutTokenApi.post<ResponseDTO<AuthReissueResponse>>(
     `/api/v1/auth/reissue`,
     {},
     {
@@ -24,10 +24,8 @@ const reissue = async (token: string) => {
       },
     },
   );
-  setTokens(data.data.tokenInfo.accessToken, data.data.tokenInfo.refreshToken);
-  console.log('토큰 재발급 실행');
-
-  return data.data.tokenInfo.accessToken;
+  setTokens(data.data.accessToken, data.data.refreshToken);
+  return data.data.accessToken;
 };
 
 const authApis = { postKakao, postApple, reissue };

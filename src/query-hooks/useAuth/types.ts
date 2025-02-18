@@ -14,3 +14,5 @@ export type TokenInfo = {
   refreshToken: string;
 };
 export type AuthResponse = { memberId: number; isCompletedOnboarding: boolean; tokenInfo: TokenInfo };
+
+export type AuthReissueResponse = TokenInfo;

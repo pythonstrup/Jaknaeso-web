@@ -1,5 +1,3 @@
-'use client';
-
 import type { PropsWithChildren } from 'react';
 
 import { FooterLayout } from '@/components/Layout/Footer';

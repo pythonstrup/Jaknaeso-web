@@ -1,0 +1,19 @@
+.container {
+  height: calc(100vh - 11.625rem);
+  @include flex-center;
+}
+
+.content {
+  white-space: pre-line;
+  @include flex-center-column;
+  text-align: center;
+  h2 {
+    margin-top: 1.5rem;
+    @include title2;
+  }
+  h5 {
+    margin-top: 0.75rem;
+    @include subTitle3;
+    color: $neutral-600;
+  }
+}

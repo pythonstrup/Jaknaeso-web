@@ -49,7 +49,7 @@ export default function HomeContent() {
       showToast('하루에 한 회차씩 답변할 수 있어요');
     }
     if (getLockState(day) === 'completed') {
-      routes.push(`${ROUTES.reportQuestions}?focus=${day}`);
+      routes.push(`${ROUTES.reportQuestions}&focus=${day}`);
     }
   };
 
